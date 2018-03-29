@@ -4,6 +4,7 @@ const _ = require("lodash");
 const axios = require("axios");
 const express = require("express");
 const bodyParser = require("body-parser");
+const { ObjectID } = require("mongodb");
 
 const { mongoose } = require("./db/mongoose");
 const { Book } = require("./models/book");
@@ -54,6 +55,24 @@ app.get("/books", async (req, res) => {
   try {
     const books = await Book.find({});
     res.send(books);
+  } catch (e) {
+    res.status(400).send();
+  }
+});
+
+app.get("/books/:id", async (req, res) => {
+  const id = req.params.id;
+  if (!ObjectID.isValid(id)) {
+    return res.status(404).send();
+  }
+  try {
+    const book = await Book.findOne({
+      _id: id
+    });
+    if (!book) {
+      return res.status(404).send();
+    }
+    res.send({ book });
   } catch (e) {
     res.status(400).send();
   }
