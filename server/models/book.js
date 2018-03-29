@@ -1,0 +1,40 @@
+const mongoose = require("mongoose");
+
+const Book = mongoose.model("Book", {
+  title: {
+    type: String,
+    required: true,
+    minlength: 1,
+    trim: true
+  },
+  authors: {
+    type: [String],
+    required: function() {
+      return this.authors.length > 0;
+    }
+  },
+  description: {
+    type: String,
+    trim: true,
+    default: ""
+  },
+  pageCount: {
+    type: Number,
+    min: 1
+  },
+  thumbnailLink: {
+    type: String,
+    default: ""
+  },
+  shelfStatus: {
+    type: String,
+    enum: ["Read", "Currently Reading", "Want to Read"],
+    required: true
+  }
+  // _owner: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   required: true
+  // }
+});
+
+module.exports = { Book };

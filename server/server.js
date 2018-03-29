@@ -5,10 +5,15 @@ const axios = require("axios");
 const express = require("express");
 const bodyParser = require("body-parser");
 
+const { mongoose } = require("./db/mongoose");
+const { Book } = require("./models/book");
+
 const app = express();
 const port = process.env.PORT;
 
 app.use(bodyParser.json());
+
+/***************************** GOOGLE BOOKS API *****************************/
 
 app.post("/api", async (req, res) => {
   const { query, field } = req.body;
@@ -22,6 +27,26 @@ app.post("/api", async (req, res) => {
     res.send(data.items);
   } catch (e) {
     res.status(400).send();
+  }
+});
+
+/***************************** BOOK *****************************/
+
+app.post("/books", async (req, res) => {
+  const book = new Book({
+    title: req.body.title,
+    authors: req.body.authors,
+    description: req.body.description,
+    pageCount: req.body.pageCount,
+    thumbnailLink: req.body.thumbnailLink,
+    shelfStatus: req.body.shelfStatus
+  });
+  try {
+    const doc = await book.save();
+    res.send(doc);
+  } catch (e) {
+    console.log(e);
+    res.status(400).send(e);
   }
 });
 
