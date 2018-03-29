@@ -1,0 +1,19 @@
+{
+  "name": "aliveberry",
+  "version": "1.0.0",
+  "main": "server/server.js",
+  "author": "garretteklof",
+  "license": "MIT",
+  "scripts": {
+    "node": "./node_modules/nodemon/bin/nodemon.js server/server.js"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "lodash": "^4.17.5"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.2"
+  }
+}
