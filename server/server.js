@@ -10,6 +10,8 @@ const { mongoose } = require("./db/mongoose");
 const { Book } = require("./models/book");
 const { User } = require("./models/user");
 
+const { authenticate } = require("./middleware/authenticate");
+
 const app = express();
 const port = process.env.PORT;
 
@@ -137,6 +139,28 @@ app.post("/users", async (req, res) => {
     await user.save();
     const token = await user.generateAuthToken();
     res.header("x-auth", token).send(user);
+  } catch (e) {
+    res.status(400).send();
+  }
+});
+
+/***************************** LOGIN/LOGOUT *****************************/
+
+app.post("/login", async (req, res) => {
+  try {
+    const { email, password } = _.pick(req.body, ["email", "password"]);
+    const user = await User.findByCredentials(email, password);
+    const token = await user.generateAuthToken();
+    res.header("x-auth", token).send(user);
+  } catch (e) {
+    res.status(400).send();
+  }
+});
+
+app.delete("/logout", authenticate, async (req, res) => {
+  try {
+    await res.locals.user.removeAuthToken(res.locals.token);
+    res.status(200).send();
   } catch (e) {
     res.status(400).send();
   }
