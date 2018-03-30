@@ -78,6 +78,45 @@ app.get("/books/:id", async (req, res) => {
   }
 });
 
+app.delete("/books/:id", async (req, res) => {
+  const id = req.params.id;
+  if (!ObjectID.isValid(id)) {
+    return res.status(404).send();
+  }
+  try {
+    const book = await Book.findOneAndRemove({
+      _id: id
+    });
+    if (!book) {
+      return res.status(404).send();
+    }
+    res.send({ book });
+  } catch (e) {
+    res.status(400).send();
+  }
+});
+
+app.patch("/books/:id", async (req, res) => {
+  const id = req.params.id;
+  const { shelfStatus } = _.pick(req.body, ["shelfStatus"]);
+  if (!ObjectID.isValid(id)) {
+    return res.status(404).send();
+  }
+  try {
+    const book = await Book.findOneAndUpdate(
+      { _id: id },
+      { $set: { shelfStatus } },
+      { new: true, runValidators: true }
+    );
+    if (!book) {
+      return res.status(404).send();
+    }
+    res.send({ book });
+  } catch (e) {
+    res.status(400).send();
+  }
+});
+
 app.listen(port, () => {
   console.log(`Started server on port ${port}!`);
 });
