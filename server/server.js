@@ -33,7 +33,7 @@ app.post("/api", express.json(), async (req, res) => {
 
 /***************************** BOOKS *****************************/
 
-app.post("/books", express.json(), async (req, res) => {
+app.post("/books", express.json(), authenticate, async (req, res) => {
   const book = new Book({
     volumeID: req.body.volumeID,
     title: req.body.title,
@@ -41,7 +41,8 @@ app.post("/books", express.json(), async (req, res) => {
     description: req.body.description,
     pageCount: req.body.pageCount,
     thumbnailLink: req.body.thumbnailLink,
-    shelfStatus: req.body.shelfStatus
+    shelfStatus: req.body.shelfStatus,
+    _owner: res.locals.user._id
   });
   try {
     const books = await Book.find({});
@@ -61,23 +62,24 @@ app.post("/books", express.json(), async (req, res) => {
   }
 });
 
-app.get("/books", async (req, res) => {
+app.get("/books", authenticate, async (req, res) => {
   try {
-    const books = await Book.find({});
+    const books = await Book.find({ _owner: res.locals.user._id });
     res.send(books);
   } catch (e) {
     res.status(400).send();
   }
 });
 
-app.get("/books/:id", async (req, res) => {
+app.get("/books/:id", authenticate, async (req, res) => {
   const id = req.params.id;
   if (!ObjectID.isValid(id)) {
     return res.status(404).send();
   }
   try {
     const book = await Book.findOne({
-      _id: id
+      _id: id,
+      _owner: res.locals.user._id
     });
     if (!book) {
       return res.status(404).send();
@@ -88,14 +90,15 @@ app.get("/books/:id", async (req, res) => {
   }
 });
 
-app.delete("/books/:id", async (req, res) => {
+app.delete("/books/:id", authenticate, async (req, res) => {
   const id = req.params.id;
   if (!ObjectID.isValid(id)) {
     return res.status(404).send();
   }
   try {
     const book = await Book.findOneAndRemove({
-      _id: id
+      _id: id,
+      _owner: res.locals.user._id
     });
     if (!book) {
       return res.status(404).send();
@@ -106,7 +109,7 @@ app.delete("/books/:id", async (req, res) => {
   }
 });
 
-app.patch("/books/:id", express.json(), async (req, res) => {
+app.patch("/books/:id", express.json(), authenticate, async (req, res) => {
   const id = req.params.id;
   const { shelfStatus } = _.pick(req.body, ["shelfStatus"]);
   if (!ObjectID.isValid(id)) {
@@ -114,7 +117,7 @@ app.patch("/books/:id", express.json(), async (req, res) => {
   }
   try {
     const book = await Book.findOneAndUpdate(
-      { _id: id },
+      { _id: id, _owner: res.locals.user._id },
       { $set: { shelfStatus } },
       { new: true, runValidators: true }
     );
