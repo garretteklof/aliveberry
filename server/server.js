@@ -3,7 +3,6 @@ require("./config/config");
 const _ = require("lodash");
 const axios = require("axios");
 const express = require("express");
-const bodyParser = require("body-parser");
 const { ObjectID } = require("mongodb");
 
 const { mongoose } = require("./db/mongoose");
@@ -15,11 +14,9 @@ const { authenticate } = require("./middleware/authenticate");
 const app = express();
 const port = process.env.PORT;
 
-app.use(bodyParser.json());
-
 /***************************** GOOGLE BOOKS API *****************************/
 
-app.post("/api", async (req, res) => {
+app.post("/api", express.json(), async (req, res) => {
   const { query, field } = req.body;
   const encodedQuery = encodeURIComponent(query);
   const maxResults = 12;
@@ -36,7 +33,7 @@ app.post("/api", async (req, res) => {
 
 /***************************** BOOKS *****************************/
 
-app.post("/books", async (req, res) => {
+app.post("/books", express.json(), async (req, res) => {
   const book = new Book({
     volumeID: req.body.volumeID,
     title: req.body.title,
@@ -109,7 +106,7 @@ app.delete("/books/:id", async (req, res) => {
   }
 });
 
-app.patch("/books/:id", async (req, res) => {
+app.patch("/books/:id", express.json(), async (req, res) => {
   const id = req.params.id;
   const { shelfStatus } = _.pick(req.body, ["shelfStatus"]);
   if (!ObjectID.isValid(id)) {
@@ -132,7 +129,7 @@ app.patch("/books/:id", async (req, res) => {
 
 /***************************** USERS *****************************/
 
-app.post("/users", async (req, res) => {
+app.post("/users", express.json(), async (req, res) => {
   try {
     const body = _.pick(req.body, ["email", "password"]);
     const user = new User(body);
@@ -146,7 +143,7 @@ app.post("/users", async (req, res) => {
 
 /***************************** LOGIN/LOGOUT *****************************/
 
-app.post("/login", async (req, res) => {
+app.post("/login", express.json(), async (req, res) => {
   try {
     const { email, password } = _.pick(req.body, ["email", "password"]);
     const user = await User.findByCredentials(email, password);
