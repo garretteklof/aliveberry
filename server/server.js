@@ -35,6 +35,7 @@ app.post("/api", async (req, res) => {
 
 app.post("/books", async (req, res) => {
   const book = new Book({
+    volumeID: req.body.volumeID,
     title: req.body.title,
     authors: req.body.authors,
     description: req.body.description,
@@ -43,11 +44,20 @@ app.post("/books", async (req, res) => {
     shelfStatus: req.body.shelfStatus
   });
   try {
+    const books = await Book.find({});
+    const duplicateBook = books.filter(
+      ({ volumeID }) => volumeID === req.body.volumeID
+    );
+    if (duplicateBook.length) {
+      return res.status(400).send({
+        error: "Send back a custom error about no duplicate books!"
+      });
+    }
     const doc = await book.save();
     res.send(doc);
   } catch (e) {
-    console.log(e);
     res.status(400).send(e);
+    // Something went wrong with Google Books
   }
 });
 

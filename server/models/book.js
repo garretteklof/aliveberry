@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
 
-const Book = mongoose.model("Book", {
+const BookSchema = new mongoose.Schema({
+  volumeID: {
+    type: String,
+    required: true,
+    unique: true
+  },
   title: {
     type: String,
     required: true,
@@ -9,9 +14,13 @@ const Book = mongoose.model("Book", {
   },
   authors: {
     type: [String],
-    required: function() {
-      return this.authors.length > 0;
-    }
+    required: true,
+    validate: [
+      function() {
+        return this.authors.length > 0;
+      },
+      "Uh oh, {PATH} can't be an empty array."
+    ]
   },
   description: {
     type: String,
@@ -36,5 +45,7 @@ const Book = mongoose.model("Book", {
   //   required: true
   // }
 });
+
+const Book = mongoose.model("Book", BookSchema);
 
 module.exports = { Book };
