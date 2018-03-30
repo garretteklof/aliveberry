@@ -8,6 +8,7 @@ const { ObjectID } = require("mongodb");
 
 const { mongoose } = require("./db/mongoose");
 const { Book } = require("./models/book");
+const { User } = require("./models/user");
 
 const app = express();
 const port = process.env.PORT;
@@ -56,7 +57,7 @@ app.post("/books", async (req, res) => {
     const doc = await book.save();
     res.send(doc);
   } catch (e) {
-    res.status(400).send(e);
+    res.status(400).send();
     // Something went wrong with Google Books
   }
 });
@@ -122,6 +123,20 @@ app.patch("/books/:id", async (req, res) => {
       return res.status(404).send();
     }
     res.send({ book });
+  } catch (e) {
+    res.status(400).send();
+  }
+});
+
+/***************************** USERS *****************************/
+
+app.post("/users", async (req, res) => {
+  try {
+    const body = _.pick(req.body, ["email", "password"]);
+    const user = new User(body);
+    await user.save();
+    const token = await user.generateAuthToken();
+    res.header("x-auth", token).send(user);
   } catch (e) {
     res.status(400).send();
   }
