@@ -1,5 +1,6 @@
 require("./config/config");
 
+const path = require("path");
 const _ = require("lodash");
 const axios = require("axios");
 const express = require("express");
@@ -13,6 +14,7 @@ const { authenticate } = require("./middleware/authenticate");
 
 const app = express();
 const port = process.env.PORT;
+const publicPath = path.join(__dirname, "..", "public");
 
 /***************************** GOOGLE BOOKS API *****************************/
 
@@ -164,6 +166,12 @@ app.delete("/logout", authenticate, async (req, res) => {
   } catch (e) {
     res.status(400).send();
   }
+});
+
+/***************************** FRONTEND *****************************/
+
+app.get("*", express.static(publicPath), (req, res) => {
+  res.sendFile(path.join(publicPath, "index.html"));
 });
 
 app.listen(port, () => {
