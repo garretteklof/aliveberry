@@ -21,7 +21,7 @@ const publicPath = path.join(__dirname, "..", "public");
 app.post("/api", express.json(), async (req, res) => {
   const { query, field } = req.body;
   const encodedQuery = encodeURIComponent(query);
-  const maxResults = 12;
+  const maxResults = 36;
   try {
     const url = `https://www.googleapis.com/books/v1/volumes?printType=books&q=${field}:${encodedQuery}&key=${
       process.env.GOOGLE_BOOKS_API_KEY
@@ -29,7 +29,7 @@ app.post("/api", express.json(), async (req, res) => {
     const { data } = await axios.get(url);
     res.send(data.items);
   } catch (e) {
-    res.status(400).send();
+    res.status(400).send(e);
   }
 });
 

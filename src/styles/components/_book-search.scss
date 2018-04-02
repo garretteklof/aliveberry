@@ -1,0 +1,105 @@
+.search {
+  grid-column: center-start / center-end;
+  display: grid;
+  grid-row-gap: 4rem;
+  align-content: center;
+  &__form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__input {
+    width: 40%;
+    font-size: 2.5rem;
+    padding: 1.5rem 2rem;
+    border: none;
+    border-radius: 3rem;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: 0 1rem 2rem rgba(black, 0.15);
+    color: #420039;
+    &:focus {
+      outline: none;
+    }
+  }
+  &__select {
+    cursor: pointer;
+    appearance: none;
+    border: none;
+    border-radius: 0;
+    border-top-right-radius: 3rem;
+    border-bottom-right-radius: 3rem;
+    outline: none;
+    background: no-repeat 92% #8e0045
+      url("../../public/images/chevron-down.svg");
+    background-size: 3rem;
+    font-size: 1.6rem;
+    color: white;
+    align-self: stretch;
+    width: 12rem;
+    padding: 0 1rem;
+
+    &:focus {
+      outline: none;
+      border: none;
+    }
+  }
+}
+.results {
+  min-height: 22rem;
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(min-content, 1fr));
+    grid-template-rows: repeat(2, min-content);
+    grid-row-gap: 2rem;
+  }
+  &__pagination {
+    cursor: pointer;
+    grid-row: 2 / -1;
+    grid-column: 1 / -1;
+    justify-self: center;
+    > * {
+      display: inline-block;
+    }
+    svg {
+      fill: #e8eef2;
+      height: 4rem;
+      width: 4rem;
+      transition: all 0.3s;
+      &:hover {
+        transform: translateY(-4px);
+        fill: #8e0045;
+      }
+      &:active,
+      &:focus {
+        transform: translateY(0);
+        fill: #8e0045;
+      }
+    }
+  }
+  &__book {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:not(:first-of-type) {
+      margin-left: -3rem;
+    }
+  }
+  &__book-cover {
+    cursor: pointer;
+    height: auto;
+    width: 10rem;
+    border-radius: 3px;
+    transition: all 0.3s;
+    &:hover {
+      transform: translateY(-0.5rem) scale(1.1);
+      box-shadow: 0 1.5rem 4rem rgba(black, 0.4);
+      z-index: 1000;
+    }
+  }
+}
+.results__book:active > .results__book-cover {
+  transform: translateY(0);
+  box-shadow: 0 0.5rem 4rem rgba(black, 0.8);
+  z-index: 1000;
+}

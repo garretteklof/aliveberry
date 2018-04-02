@@ -6,10 +6,18 @@ const BookSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
+  identifiers: {
+    type: [Object],
+    required: true
+  },
   title: {
     type: String,
     required: true,
     minlength: 1,
+    trim: true
+  },
+  subtitle: {
+    type: String,
     trim: true
   },
   authors: {
@@ -29,7 +37,8 @@ const BookSchema = new mongoose.Schema({
   },
   pageCount: {
     type: Number,
-    min: 1
+    min: 1,
+    default: null
   },
   thumbnailLink: {
     type: String,

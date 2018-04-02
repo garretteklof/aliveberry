@@ -1,0 +1,15 @@
+body {
+  font-family: "Merriweather", serif;
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: #28112b;
+}
+
+form {
+  > * {
+    font-family: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    color: inherit;
+  }
+}

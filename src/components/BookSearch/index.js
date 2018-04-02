@@ -1,0 +1,112 @@
+import React from "react";
+import axios from "axios";
+
+import SearchInput from "./SearchInput";
+import BooksContainer from "./BooksContainer";
+
+export default class BookSearch extends React.Component {
+  state = { query: "", field: "intitle", data: [], page: 0, perPage: 12 };
+
+  onQueryChange = e => {
+    const query = e.target.value;
+    this.setState(() => ({ query }));
+  };
+
+  onFieldChange = e => {
+    const field = e.target.value;
+    this.setState(() => ({ field }));
+  };
+
+  loadData = async e => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("/api", {
+        query: this.state.query,
+        field: this.state.field
+      });
+      const data = response.data.map(book => {
+        const volumeID = book.id;
+        const identifiers = book.volumeInfo.industryIdentifiers || [];
+        const title = book.volumeInfo.title || "";
+        const subtitle = book.volumeInfo.subtitle || "";
+        const authors = book.volumeInfo.authors || [];
+        const description = book.volumeInfo.description || "";
+        const pageCount = book.volumeInfo.pageCount || null;
+        const hasThumbnail = book.volumeInfo.imageLinks || null;
+        let thumbnailLink;
+        hasThumbnail
+          ? (thumbnailLink = book.volumeInfo.imageLinks.thumbnail)
+          : (thumbnailLink = "/images/no-book-cover.png");
+        return {
+          volumeID,
+          identifiers,
+          title,
+          subtitle,
+          authors,
+          description,
+          pageCount,
+          thumbnailLink
+        };
+      });
+      this.setState(() => ({ data, page: 1 }));
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  divideData = data => {
+    const indexLast = this.state.page * this.state.perPage;
+    const indexFirst = indexLast - this.state.perPage;
+    return data.slice(indexFirst, indexLast);
+  };
+  paginateBackward = () => {
+    if (this.state.page <= 1) {
+      this.setState(() => ({ page: 1 }));
+    } else {
+      this.setState(prevState => ({
+        page: prevState.page - 1
+      }));
+    }
+  };
+  paginateForward = () => {
+    if (this.state.page >= 3) {
+      this.setState(() => ({ page: 3 }));
+    } else {
+      this.setState(prevState => ({
+        page: prevState.page + 1
+      }));
+    }
+  };
+  hidePaginateBackward = () => (this.state.page === 1 ? "u-hide" : "");
+  hidePaginateForward = () => {
+    if (
+      this.divideData(this.state.data).length < this.state.perPage ||
+      this.state.page === 3
+    ) {
+      return "u-hide";
+    }
+    return "";
+  };
+
+  render() {
+    return (
+      <section className="search">
+        <SearchInput
+          query={this.state.query}
+          field={this.state.field}
+          onQueryChange={this.onQueryChange}
+          onFieldChange={this.onFieldChange}
+          loadData={this.loadData}
+        />
+        <BooksContainer
+          books={this.state.data}
+          divideBooks={this.divideData}
+          forward={this.paginateForward}
+          backward={this.paginateBackward}
+          hideForward={this.hidePaginateForward}
+          hideBackward={this.hidePaginateBackward}
+          page={this.state.page}
+        />
+      </section>
+    );
+  }
+}
