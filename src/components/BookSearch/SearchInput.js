@@ -5,9 +5,9 @@ const SearchInput = ({
   field,
   onFieldChange,
   onQueryChange,
-  loadData
+  submitForm
 }) => (
-  <form className="search__form" onSubmit={loadData}>
+  <form className="search__form" onSubmit={submitForm}>
     <input
       className="search__input"
       type="text"

@@ -42,7 +42,7 @@ const BookSchema = new mongoose.Schema({
   },
   thumbnailLink: {
     type: String,
-    default: ""
+    required: true
   },
   shelfStatus: {
     type: String,
