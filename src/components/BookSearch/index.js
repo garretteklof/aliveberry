@@ -48,13 +48,12 @@ export default class BookSearch extends React.Component {
 
   onQueryChange = e => {
     const query = e.target.value;
-    this.setState({ query }, () => this.loadData());
+    this.setState({ query });
   };
 
   onFieldChange = e => {
-    this.loadData();
     const field = e.target.value;
-    this.setState({ field }, () => this.loadData());
+    this.setState({ field });
   };
 
   divideData = data => {
