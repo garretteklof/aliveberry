@@ -84,7 +84,9 @@ export default class Book extends React.Component {
               </p>
             </div>
             <p className="book-modal__book-description">
-              {description.length > 400 ? description + " ..." : description}
+              {description.length > 400
+                ? description.slice(0, 400) + " ..."
+                : description}
             </p>
             <select
               className="book-modal__select"

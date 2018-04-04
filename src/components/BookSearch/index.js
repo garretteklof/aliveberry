@@ -4,15 +4,17 @@ import axios from "axios";
 import SearchInput from "./SearchInput";
 import BooksContainer from "./BooksContainer";
 
+import { callGoogleBooks } from "../../api/external";
+
 export default class BookSearch extends React.Component {
   state = { query: "", field: "intitle", data: [], page: 0, perPage: 12 };
 
   loadData = async () => {
     try {
-      const response = await axios.post("/api", {
-        query: this.state.query,
-        field: this.state.field
-      });
+      const response = await callGoogleBooks(
+        this.state.query,
+        this.state.field
+      );
       const data = response.data
         .map(book => {
           const volumeID = book.id;
