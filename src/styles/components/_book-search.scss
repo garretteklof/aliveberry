@@ -3,6 +3,7 @@
   display: grid;
   grid-row-gap: 4rem;
   align-content: center;
+  padding: 4rem;
   &__form {
     display: flex;
     justify-content: center;
@@ -12,12 +13,11 @@
     width: 40%;
     font-size: 2rem;
     padding: 1.5rem 2rem;
-    border: none;
+    border: 0.5rem solid $snow;
     border-radius: 3rem;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
-    box-shadow: 0 1rem 2rem rgba(black, 0.1);
-    color: #420039;
+    // box-shadow: 0 1rem 2rem rgba(black, 0.1);
     &:focus {
       outline: none;
     }
@@ -25,20 +25,18 @@
   &__select {
     cursor: pointer;
     appearance: none;
-    border: none;
     border-radius: 0;
     border-top-right-radius: 3rem;
     border-bottom-right-radius: 3rem;
+    border: none;
     outline: none;
-    background: no-repeat 92% #8e0045
-      url("../../public/images/chevron-down.svg");
+    background: no-repeat 92% $pink url("../../public/images/chevron-down.svg");
     background-size: 3rem;
     font-size: 1.6rem;
     color: white;
     align-self: stretch;
     width: 12rem;
     padding: 0 1rem;
-
     &:focus {
       outline: none;
       border: none;
@@ -46,7 +44,7 @@
   }
 }
 .results {
-  min-height: 22rem;
+  height: 24rem;
   &__grid {
     display: grid;
     grid-template-columns: repeat(12, minmax(min-content, 1fr));
@@ -54,27 +52,28 @@
     grid-row-gap: 2rem;
   }
   &__pagination {
-    cursor: pointer;
     grid-row: 2 / -1;
     grid-column: 1 / -1;
     justify-self: center;
     > * {
+      cursor: pointer;
       display: inline-block;
-    }
-    svg {
-      fill: #e8eef2;
-      height: 4rem;
-      width: 4rem;
-      transition: all 0.3s;
+      transition: transform 0.3s;
       &:hover {
         transform: translateY(-4px);
-        fill: #8e0045;
+        > svg {
+          fill: $pink;
+        }
       }
       &:active,
       &:focus {
         transform: translateY(0);
-        fill: #8e0045;
       }
+    }
+    svg {
+      fill: $silver;
+      height: 4rem;
+      width: 4rem;
     }
   }
   &__book {
@@ -88,18 +87,18 @@
   &__book-cover {
     cursor: pointer;
     height: auto;
-    width: 10rem;
+    width: 9rem;
     border-radius: 3px;
     transition: all 0.3s;
     &:hover {
-      transform: translateY(-0.5rem) scale(1.1);
+      transform: translateY(-0.5rem) scale(1.2);
       box-shadow: 0 1.5rem 4rem rgba(black, 0.4);
-      z-index: 1000;
+      z-index: 10;
     }
   }
 }
-.results__book:active > .results__book-cover {
+.results__book > a:active > .results__book-cover {
   transform: translateY(0);
   box-shadow: 0 0.5rem 4rem rgba(black, 0.8);
-  z-index: 1000;
+  z-index: 0;
 }
