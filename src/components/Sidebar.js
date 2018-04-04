@@ -1,5 +1,12 @@
 import React from "react";
 
-const Sidebar = () => <div className="sidebar">SIDEBAR</div>;
+import Logout from "./Logout";
+
+const Sidebar = () => (
+  <div className="sidebar">
+    SIDEBAR
+    <Logout />
+  </div>
+);
 
 export default Sidebar;

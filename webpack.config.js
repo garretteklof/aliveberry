@@ -53,6 +53,11 @@ module.exports = {
     contentBase: path.join(__dirname, "public"),
     historyApiFallback: true,
     publicPath: "/dist/",
-    proxy: { "/api": "http://localhost:3000" }
+    proxy: [
+      {
+        context: ["/api", "/login", "/logout", "/users"],
+        target: "http://localhost:3000"
+      }
+    ]
   }
 };

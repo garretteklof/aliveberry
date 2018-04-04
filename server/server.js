@@ -146,6 +146,10 @@ app.post("/users", express.json(), async (req, res) => {
   }
 });
 
+app.get("/users/me", authenticate, (req, res) => {
+  res.send(res.locals.user);
+});
+
 /***************************** LOGIN/LOGOUT *****************************/
 
 app.post("/login", express.json(), async (req, res) => {
