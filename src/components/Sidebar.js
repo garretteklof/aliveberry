@@ -1,6 +1,6 @@
 import React from "react";
 
-import Logout from "./Logout";
+import Logout from "./Membership/Logout";
 
 const Sidebar = () => (
   <div className="sidebar">

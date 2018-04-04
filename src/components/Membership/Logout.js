@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { logout } from "../actions/auth";
-import { callLogout } from "../api/auth";
+import { logout } from "../../actions/auth";
+import { callLogout } from "../../api/auth";
 
 class Logout extends React.Component {
   onLogout = () => {
