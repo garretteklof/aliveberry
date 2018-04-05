@@ -15,7 +15,9 @@ const BooksContainer = ({
     {!!page && (
       <div className="results__grid">
         {books.length ? (
-          divideBooks(books).map(book => <Book key={book.volumeID} {...book} />)
+          divideBooks(books).map(book => (
+            <Book key={book.volumeID} book={book} />
+          ))
         ) : (
           <p> No Books </p>
         )}

@@ -1,9 +1,11 @@
 import React from "react";
 import Modal from "react-modal";
+import { connect } from "react-redux";
+import { beginAddBook } from "../../actions/books";
 
 Modal.setAppElement("#app");
 
-export default class Book extends React.Component {
+class Book extends React.Component {
   state = { showModal: false, shelf: "Want to Read" };
 
   handleOpenModal = () => {
@@ -17,6 +19,14 @@ export default class Book extends React.Component {
     this.setState({ shelf });
   };
 
+  addBook = () => {
+    const book = Object.assign({}, this.props.book, {
+      shelfStatus: this.state.shelf
+    });
+    this.props.beginAddBook(book);
+    this.handleCloseModal();
+  };
+
   render() {
     const {
       thumbnailLink,
@@ -26,7 +36,7 @@ export default class Book extends React.Component {
       authors,
       pageCount,
       description
-    } = this.props;
+    } = this.props.book;
     return (
       <div className="results__book">
         <a onClick={this.handleOpenModal}>
@@ -97,7 +107,7 @@ export default class Book extends React.Component {
               <option value="Currently Reading">Currently Reading</option>
               <option value="Read">Read</option>
             </select>
-            <a className="book-modal__submit">
+            <a className="book-modal__submit" onClick={this.addBook}>
               <svg>
                 <use xlinkHref="images/sprite.svg#icon-check-circle" />
               </svg>
@@ -108,3 +118,8 @@ export default class Book extends React.Component {
     );
   }
 }
+const mapDispatchToProps = dispatch => ({
+  beginAddBook: book => dispatch(beginAddBook(book))
+});
+
+export default connect(undefined, mapDispatchToProps)(Book);

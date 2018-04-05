@@ -6,9 +6,15 @@ const BookSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-  identifiers: {
-    type: [Object],
-    required: true
+  authors: {
+    type: [String],
+    required: true,
+    validate: [
+      function() {
+        return this.authors.length > 0;
+      },
+      "Uh oh, {PATH} can't be an empty array."
+    ]
   },
   title: {
     type: String,
@@ -19,16 +25,6 @@ const BookSchema = new mongoose.Schema({
   subtitle: {
     type: String,
     trim: true
-  },
-  authors: {
-    type: [String],
-    required: true,
-    validate: [
-      function() {
-        return this.authors.length > 0;
-      },
-      "Uh oh, {PATH} can't be an empty array."
-    ]
   },
   description: {
     type: String,
@@ -43,6 +39,9 @@ const BookSchema = new mongoose.Schema({
   thumbnailLink: {
     type: String,
     required: true
+  },
+  identifiers: {
+    type: [{}]
   },
   shelfStatus: {
     type: String,

@@ -38,6 +38,7 @@ app.post("/api", express.json(), async (req, res) => {
 app.post("/books", express.json(), authenticate, async (req, res) => {
   const book = new Book({
     volumeID: req.body.volumeID,
+    identifiers: req.body.identifiers,
     title: req.body.title,
     authors: req.body.authors,
     description: req.body.description,
@@ -59,7 +60,7 @@ app.post("/books", express.json(), authenticate, async (req, res) => {
     const doc = await book.save();
     res.send(doc);
   } catch (e) {
-    res.status(400).send();
+    res.status(400).send(e);
     // Something went wrong with Google Books
   }
 });
