@@ -48,7 +48,7 @@ app.post("/books", express.json(), authenticate, async (req, res) => {
     _owner: res.locals.user._id
   });
   try {
-    const books = await Book.find({});
+    const books = await Book.find({ _owner: res.locals.user._id });
     const duplicateBook = books.filter(
       ({ volumeID }) => volumeID === req.body.volumeID
     );

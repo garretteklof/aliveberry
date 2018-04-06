@@ -1,15 +1,22 @@
-import { callPostBooks } from "../api/books";
+import { callPostToBooks, callGetBooks } from "../api/books";
+
+export const beginAddBook = (book = {}) => {
+  return dispatch => {
+    return callPostToBooks(book).then(book => dispatch(addBook(book)));
+  };
+};
 
 export const addBook = book => ({
   type: "ADD_BOOK",
   book
 });
 
-export const beginAddBook = (book = {}) => {
+export const beginSetBooks = () => {
   return dispatch => {
-    return callPostBooks(book).then(
-      book => dispatch(addBook(book)),
-      e => console.log(e)
-    );
+    return callGetBooks().then(({ data }) => dispatch(setBooks(data)));
   };
 };
+export const setBooks = books => ({
+  type: "SET_BOOKS",
+  books
+});

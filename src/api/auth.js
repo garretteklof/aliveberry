@@ -10,5 +10,3 @@ export const callLogin = (email, password) => {
 export const callLogout = token => {
   return axios.delete("/logout", { headers: { "x-auth": token } });
 };
-
-module.exports = { callLogin, callLogout };

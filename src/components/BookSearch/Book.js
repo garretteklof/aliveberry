@@ -19,12 +19,16 @@ class Book extends React.Component {
     this.setState({ shelf });
   };
 
-  addBook = () => {
+  addBook = async () => {
     const book = Object.assign({}, this.props.book, {
       shelfStatus: this.state.shelf
     });
-    this.props.beginAddBook(book);
-    this.handleCloseModal();
+    try {
+      await this.props.beginAddBook(book);
+      this.handleCloseModal();
+    } catch (e) {
+      // SET ERROR
+    }
   };
 
   render() {

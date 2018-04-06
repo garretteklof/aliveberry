@@ -8,6 +8,7 @@ import configureStore from "./store/configureStore";
 import { login, logout } from "./actions/auth";
 
 import "./styles/styles.scss";
+import { beginSetBooks } from "./actions/books";
 
 const store = configureStore();
 
@@ -27,17 +28,20 @@ const renderApp = () => {
 
 (async () => {
   const token = localStorage.getItem("token");
-  try {
-    const currentUser = await axios.get("/users/me", {
-      headers: { "x-auth": token }
-    });
-    store.dispatch(login(currentUser.data._id));
-    renderApp();
-    history.push("/dashboard");
-  } catch (e) {
-    store.dispatch(logout());
-    renderApp();
-    history.push("/");
+  if (token) {
+    try {
+      const currentUser = await axios.get("/users/me", {
+        headers: { "x-auth": token }
+      });
+      store.dispatch(login(currentUser.data._id));
+      await store.dispatch(beginSetBooks());
+      renderApp();
+      history.push("/dashboard");
+    } catch (e) {
+      store.dispatch(logout());
+      renderApp();
+      history.push("/");
+    }
   }
 })();
 
