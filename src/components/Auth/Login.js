@@ -23,7 +23,8 @@ class Login extends React.Component {
     try {
       const response = await callLogin(this.state.email, this.state.password);
       localStorage.setItem("token", response.headers["x-auth"]);
-      this.props.login(response.data._id);
+      console.log(response.data);
+      this.props.login(response.data);
       this.props.history.push("/");
     } catch (e) {
       console.log(e);
@@ -55,7 +56,7 @@ class Login extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  login: _id => dispatch(login(_id))
+  login: user => dispatch(login(user))
 });
 
 export default connect(undefined, mapDispatchToProps)(Login);

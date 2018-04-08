@@ -36,7 +36,7 @@ const renderApp = () => {
       const currentUser = await axios.get("/users/me", {
         headers: { "x-auth": token }
       });
-      store.dispatch(login(currentUser.data._id));
+      store.dispatch(login(currentUser.data));
       await store.dispatch(beginSetBooks());
       renderApp();
       history.push("/");

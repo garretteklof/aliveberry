@@ -1,6 +1,6 @@
-export const login = _id => ({
+export const login = user => ({
   type: "LOGIN",
-  _id
+  user
 });
 
 export const logout = () => ({
