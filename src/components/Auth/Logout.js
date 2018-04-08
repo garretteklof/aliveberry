@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import { logout } from "../../actions/auth";
 import { callLogout } from "../../api/auth";
 
@@ -9,6 +10,7 @@ class Logout extends React.Component {
     callLogout(token).then(() => {
       localStorage.removeItem("token");
       this.props.logout();
+      this.props.history.push("/login");
     });
   };
 
@@ -24,4 +26,4 @@ const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(logout())
 });
 
-export default connect(undefined, mapDispatchToProps)(Logout);
+export default withRouter(connect(undefined, mapDispatchToProps)(Logout));

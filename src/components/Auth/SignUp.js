@@ -24,6 +24,7 @@ class SignUp extends React.Component {
       const response = await callAddUser(this.state.email, this.state.password);
       localStorage.setItem("token", response.headers["x-auth"]);
       this.props.login(response.data._id);
+      this.props.history.push("/");
     } catch (e) {
       console.log(e);
       this.setState({ error: "There has been an error" });

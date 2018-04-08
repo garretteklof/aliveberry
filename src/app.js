@@ -1,14 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
+import configureStore from "./store/configureStore";
 import axios from "axios";
 
-import AppRouter, { history } from "./routes/AppRouter";
-import configureStore from "./store/configureStore";
+import { AppRouter, history } from "./router/AppRouter";
+
 import { login, logout } from "./actions/auth";
+import { beginSetBooks } from "./actions/books";
 
 import "./styles/styles.scss";
-import { beginSetBooks } from "./actions/books";
 
 const store = configureStore();
 
@@ -26,6 +27,8 @@ const renderApp = () => {
   }
 };
 
+/*** Automatic Returning Login ***/
+
 (async () => {
   const token = localStorage.getItem("token");
   if (token) {
@@ -36,12 +39,16 @@ const renderApp = () => {
       store.dispatch(login(currentUser.data._id));
       await store.dispatch(beginSetBooks());
       renderApp();
-      history.push("/dashboard");
+      history.push("/");
     } catch (e) {
+      localStorage.removeItem("token");
       store.dispatch(logout());
       renderApp();
-      history.push("/");
+      history.push("/login");
     }
+  } else {
+    renderApp();
+    history.push("/login");
   }
 })();
 
