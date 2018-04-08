@@ -28,6 +28,12 @@
       color: currentColor;
       font-size: 1.4rem;
       width: 100%;
+      &--one {
+        order: 2;
+      }
+      &--two {
+        order: 4;
+      }
     }
   }
   &__icon {
@@ -35,15 +41,24 @@
     width: 2rem;
     fill: transparent;
     transition: all 0.3s;
-    &--hovered,
-    &--active {
-      fill: $pink;
+    &--one {
+      order: 1;
     }
+    &--two {
+      order: 3;
+    }
+  }
+  &__nav &__nav-link:hover + &__icon {
+    fill: $pink;
+  }
+  &__nav &__nav-link.active + &__icon {
+    fill: $pink;
   }
 
   &__shelf-list {
     list-style: none;
     grid-column: 1 / -1;
+    order: 5;
     display: flex;
     flex-direction: column;
     align-items: stretch;
