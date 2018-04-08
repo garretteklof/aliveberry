@@ -16,7 +16,6 @@ class Sidebar extends React.Component {
     };
     this.state = this.defaultState;
   }
-
   render() {
     const { match, email } = this.props;
     const {
@@ -104,7 +103,10 @@ class Sidebar extends React.Component {
           />
         </nav>
         <div className="sidebar__bottom">
-          <p className="sidebar__email">{email}</p>
+          <div className="sidebar__email">
+            <span>{email.split("@")[0]}</span>
+            <span>@{email.split("@")[1]}</span>
+          </div>
           <Logout />
         </div>
       </div>
