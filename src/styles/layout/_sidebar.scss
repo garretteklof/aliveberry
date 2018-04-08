@@ -1,6 +1,10 @@
 .sidebar {
   grid-column: sidebar-start / sidebar-end;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   border-right: 1rem solid $snow;
+  &__logo {
+    width: 6rem;
+    align-self: center;
+  }
 }
