@@ -107,9 +107,9 @@ class Book extends React.Component {
               value={this.state.shelf}
               onChange={this.onShelfChange}
             >
+              <option value="Read">Read</option>
               <option value="Want to Read">Want to Read</option>
               <option value="Currently Reading">Currently Reading</option>
-              <option value="Read">Read</option>
             </select>
             <a className="book-modal__submit" onClick={this.addBook}>
               <svg>

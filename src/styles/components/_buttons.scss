@@ -1,0 +1,20 @@
+.btn {
+  &--logout {
+    background-color: $snow;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    padding: 1rem;
+    transition: all 0.3s;
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 1rem 2rem rgba(black, 0.1);
+    }
+    &:active,
+    &:focus {
+      transform: translateY(0);
+      box-shadow: 0 1rem 2rem rgba(black, 0.05);
+      outline: none;
+    }
+  }
+}
