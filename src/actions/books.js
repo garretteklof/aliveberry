@@ -2,7 +2,7 @@ import { callPostToBooks, callGetBooks } from "../api/books";
 
 export const beginAddBook = (book = {}) => {
   return dispatch => {
-    return callPostToBooks(book).then(book => dispatch(addBook(book)));
+    return callPostToBooks(book).then(({ data }) => dispatch(addBook(data)));
   };
 };
 
