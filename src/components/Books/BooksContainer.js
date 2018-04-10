@@ -3,14 +3,11 @@ import { Link } from "react-router-dom";
 
 import Book from "./Book";
 
-class BooksContainer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.defaultState = {
-      page: props.page ? props.page : 0
-    };
-    this.state = this.defaultState;
-  }
+export default class BooksContainer extends React.Component {
+  state = {
+    page: 1
+  };
+
   divideBooks = books => {
     const indexLast = this.state.page * this.props.perPage;
     const indexFirst = indexLast - this.props.perPage;
@@ -18,13 +15,15 @@ class BooksContainer extends React.Component {
   };
 
   dropBooks = () => {
-    const { books } = this.props;
+    const { books, loading } = this.props;
     if (books.length) {
       return this.divideBooks(books).map(book => (
         <Book key={book.volumeID} book={book} />
       ));
+    } else if (loading) {
+      return null;
     } else {
-      return <p> No Books </p>;
+      <p> No Books </p>;
     }
   };
   paginateBackward = () => {
@@ -56,7 +55,7 @@ class BooksContainer extends React.Component {
     return "";
   };
   render() {
-    const { books, shelf, bunched } = this.props;
+    const { books, shelf = "", bunched = false } = this.props;
     return (
       <section className="books">
         {!!this.state.page && (
@@ -98,5 +97,3 @@ class BooksContainer extends React.Component {
     );
   }
 }
-
-export default BooksContainer;

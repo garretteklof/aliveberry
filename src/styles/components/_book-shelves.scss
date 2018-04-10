@@ -2,7 +2,7 @@
   grid-column: center-start / center-end;
 }
 .books {
-  //height: 24rem;
+  min-height: 24rem;
   margin-top: 2rem;
   &__grid {
     display: grid;

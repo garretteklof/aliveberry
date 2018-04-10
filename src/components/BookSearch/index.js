@@ -2,14 +2,15 @@ import React from "react";
 import axios from "axios";
 
 import SearchInput from "./SearchInput";
-import BooksContainer from "./BooksContainer";
+import BooksContainer from "../Books/BooksContainer";
 
 import { callGoogleBooks } from "../../api/external";
 
 export default class BookSearch extends React.Component {
-  state = { query: "", field: "intitle", data: [], page: 0, perPage: 12 };
+  state = { query: "", field: "intitle", data: [], loading: false };
 
   loadData = async () => {
+    this.setState(() => ({ loading: true }));
     try {
       const response = await callGoogleBooks(
         this.state.query,
@@ -41,7 +42,7 @@ export default class BookSearch extends React.Component {
           };
         })
         .filter(book => book.thumbnailLink !== "");
-      this.setState(() => ({ data, page: 1 }));
+      this.setState(() => ({ data, loading: false }));
     } catch (e) {
       console.log(e);
       // SET ERROR TO READ NO BOOKS AND CLEAR BOOK DATA STATE
@@ -56,40 +57,6 @@ export default class BookSearch extends React.Component {
   onFieldChange = e => {
     const field = e.target.value;
     this.setState({ field });
-  };
-
-  divideData = data => {
-    const indexLast = this.state.page * this.state.perPage;
-    const indexFirst = indexLast - this.state.perPage;
-    return data.slice(indexFirst, indexLast);
-  };
-  paginateBackward = () => {
-    if (this.state.page <= 1) {
-      this.setState(() => ({ page: 1 }));
-    } else {
-      this.setState(prevState => ({
-        page: prevState.page - 1
-      }));
-    }
-  };
-  paginateForward = () => {
-    if (this.state.page >= 3) {
-      this.setState(() => ({ page: 3 }));
-    } else {
-      this.setState(prevState => ({
-        page: prevState.page + 1
-      }));
-    }
-  };
-  hidePaginateBackward = () => (this.state.page === 1 ? "u-hide" : "");
-  hidePaginateForward = () => {
-    if (
-      this.divideData(this.state.data).length < this.state.perPage ||
-      this.state.page === 3
-    ) {
-      return "u-hide";
-    }
-    return "";
   };
 
   submitForm = e => {
@@ -109,12 +76,9 @@ export default class BookSearch extends React.Component {
         />
         <BooksContainer
           books={this.state.data}
-          divideBooks={this.divideData}
-          forward={this.paginateForward}
-          backward={this.paginateBackward}
-          hideForward={this.hidePaginateForward}
-          hideBackward={this.hidePaginateBackward}
-          page={this.state.page}
+          loading={this.state.loading}
+          perPage={12}
+          bunched
         />
       </section>
     );

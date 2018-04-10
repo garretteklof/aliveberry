@@ -5,26 +5,18 @@ import BooksContainer from "../Books/BooksContainer";
 
 const AllShelves = ({ rBooks, wtrBooks, crBooks }) => (
   <div className="all">
-    <BooksContainer
-      books={rBooks}
-      shelf={"Read"}
-      page={1}
-      perPage={8}
-      bunched={true}
-    />
+    <BooksContainer books={rBooks} shelf={"Read"} perPage={8} bunched />
     <BooksContainer
       books={wtrBooks}
       shelf={"Want to Read"}
-      page={1}
       perPage={8}
-      bunched={true}
+      bunched
     />
     <BooksContainer
       books={crBooks}
       shelf={"Currently Reading"}
-      page={1}
       perPage={8}
-      bunched={true}
+      bunched
     />
   </div>
 );

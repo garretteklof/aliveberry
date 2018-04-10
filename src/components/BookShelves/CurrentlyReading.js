@@ -4,13 +4,7 @@ import { connect } from "react-redux";
 import BooksContainer from "../Books/BooksContainer";
 
 const CurrentlyReading = ({ books }) => (
-  <BooksContainer
-    books={books}
-    shelf={"Currently Reading"}
-    page={1}
-    perPage={12}
-    bunched={false}
-  />
+  <BooksContainer books={books} shelf={"Currently Reading"} perPage={12} />
 );
 
 const mapStateToProps = state => ({
