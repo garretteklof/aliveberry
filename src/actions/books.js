@@ -11,9 +11,9 @@ export const addBook = book => ({
   book
 });
 
-export const beginSetBooks = () => {
+export const beginSetBooks = token => {
   return dispatch => {
-    return callGetBooks().then(({ data }) => dispatch(setBooks(data)));
+    return callGetBooks(token).then(({ data }) => dispatch(setBooks(data)));
   };
 };
 export const setBooks = books => ({

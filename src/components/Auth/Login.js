@@ -23,9 +23,9 @@ class Login extends React.Component {
     e.preventDefault();
     try {
       const response = await callLogin(this.state.email, this.state.password);
-      localStorage.setItem("token", response.headers["x-auth"]);
+      const token = localStorage.setItem("token", response.headers["x-auth"]);
       this.props.login(response.data);
-      this.props.beginSetBooks();
+      this.props.beginSetBooks(token);
       this.props.history.push("/");
     } catch (e) {
       console.log(e);
@@ -58,7 +58,7 @@ class Login extends React.Component {
 
 const mapDispatchToProps = dispatch => ({
   login: user => dispatch(login(user)),
-  beginSetBooks: () => dispatch(beginSetBooks())
+  beginSetBooks: token => dispatch(beginSetBooks(token))
 });
 
 export default connect(undefined, mapDispatchToProps)(Login);
