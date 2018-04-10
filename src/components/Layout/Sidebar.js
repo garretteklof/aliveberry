@@ -9,7 +9,7 @@ const Sidebar = ({ match, email }) => (
   <div className="sidebar">
     <div className="sidebar__top">
       <Link to="/" className="sidebar__logo">
-        <img src="images/aliveberry.svg" />
+        <img src="/images/aliveberry.svg" />
       </Link>
       <h1>Aliveberry</h1>
     </div>
@@ -22,7 +22,7 @@ const Sidebar = ({ match, email }) => (
         Search Books
       </NavLink>
       <svg className="sidebar__icon sidebar__icon--one">
-        <use href="images/sprite.svg#icon-bullet" />
+        <use href="/images/sprite.svg#icon-bullet" />
       </svg>
 
       <NavLink
@@ -32,7 +32,7 @@ const Sidebar = ({ match, email }) => (
         Shelves
       </NavLink>
       <svg className="sidebar__icon sidebar__icon--two">
-        <use href="images/sprite.svg#icon-bullet" />
+        <use href="/images/sprite.svg#icon-bullet" />
       </svg>
       <Route
         path={`${match.path}shelves`}

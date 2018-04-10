@@ -1,19 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import Sidebar from "../Layout/Sidebar";
-//move this
-import Book from "../BookSearch/Book.js";
+import BooksContainer from "../Books/BooksContainer";
 
 const CurrentlyReading = ({ books }) => (
-  <div>
-    {books.length ? (
-      // divide Books
-      books.map(book => <Book key={book.volumeID} book={book} />)
-    ) : (
-      <p> No Books </p>
-    )}
-  </div>
+  <BooksContainer
+    books={books}
+    shelf={"Currently Reading"}
+    page={1}
+    perPage={12}
+    bunched={false}
+  />
 );
 
 const mapStateToProps = state => ({

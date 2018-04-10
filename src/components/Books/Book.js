@@ -28,7 +28,6 @@ class Book extends React.Component {
       this.handleCloseModal();
     } catch (e) {
       // SET ERROR
-      console.log(e);
     }
   };
 
@@ -43,10 +42,10 @@ class Book extends React.Component {
       description
     } = this.props.book;
     return (
-      <div className="results__book">
+      <div className="books__book">
         <a onClick={this.handleOpenModal}>
           <img
-            className="results__book-cover"
+            className="books__book-cover"
             src={thumbnailLink}
             alt="book cover"
           />
@@ -60,7 +59,7 @@ class Book extends React.Component {
         >
           <a className="book-modal__close" onClick={this.handleCloseModal}>
             <svg>
-              <use xlinkHref="images/sprite.svg#icon-x-circle" />
+              <use href="/images/sprite.svg#icon-x-circle" />
             </svg>
           </a>
           <div className="book-modal__grid">
@@ -71,7 +70,7 @@ class Book extends React.Component {
             />
             <div className="book-modal__book-info">
               <svg>
-                <use xlinkHref="images/sprite.svg#icon-book" />
+                <use href="/images/sprite.svg#icon-book" />
               </svg>
               <div
                 className={`book-modal__book-titles ${
@@ -82,15 +81,15 @@ class Book extends React.Component {
                 <p>{subtitle}</p>
               </div>
               <svg>
-                <use xlinkHref="images/sprite.svg#icon-authors" />
+                <use href="/images/sprite.svg#icon-authors" />
               </svg>
               <p>{authors ? authors.join(", ") : "No author information."}</p>
               <svg>
-                <use xlinkHref="images/sprite.svg#icon-book-open" />
+                <use href="/images/sprite.svg#icon-book-open" />
               </svg>
               <p>{pageCount ? `${pageCount} pages` : "No page information."}</p>
               <svg>
-                <use xlinkHref="images/sprite.svg#icon-hash" />
+                <use href="/images/sprite.svg#icon-hash" />
               </svg>
               <p>
                 {identifiers.length
@@ -114,7 +113,7 @@ class Book extends React.Component {
             </select>
             <a className="book-modal__submit" onClick={this.addBook}>
               <svg>
-                <use xlinkHref="images/sprite.svg#icon-check-circle" />
+                <use href="/images/sprite.svg#icon-check-circle" />
               </svg>
             </a>
           </div>
