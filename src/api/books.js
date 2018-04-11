@@ -9,3 +9,7 @@ export const callPostToBooks = book => {
 export const callGetBooks = token => {
   return axios.get("/books", { headers: { "x-auth": token } });
 };
+
+export const callDeleteFromBooks = ({ _id }) => {
+  return axios.delete(`/books/${_id}`, { headers: { "x-auth": token } });
+};

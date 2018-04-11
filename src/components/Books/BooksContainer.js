@@ -15,10 +15,10 @@ export default class BooksContainer extends React.Component {
   };
 
   dropBooks = () => {
-    const { books, loading, forSearch = false } = this.props;
+    const { books, loading, forSearch } = this.props;
     if (books.length) {
       return this.divideBooks(books).map(book => (
-        <Book key={book.volumeID} book={book} />
+        <Book key={book.volumeID} book={book} forSearch={forSearch} />
       ));
     } else if (loading) {
       return <p> Loading... </p>;
@@ -60,7 +60,7 @@ export default class BooksContainer extends React.Component {
     return "";
   };
   render() {
-    const { books, shelf = "", bunched = false } = this.props;
+    const { books, shelf, bunched } = this.props;
     return (
       <section className="books">
         {!!this.state.page && (

@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "react-modal";
 import { connect } from "react-redux";
-import { beginAddBook } from "../../actions/books";
+import { beginAddBook, beginDeleteBook } from "../../actions/books";
 
 Modal.setAppElement("#app");
 
@@ -31,7 +31,16 @@ class Book extends React.Component {
     }
   };
 
+  deleteBook = async () => {
+    try {
+      await this.props.beginDeleteBook(this.props.book);
+    } catch (e) {
+      // SET ERROR
+    }
+  };
+
   render() {
+    const { forSearch } = this.props;
     const {
       thumbnailLink,
       identifiers,
@@ -111,11 +120,19 @@ class Book extends React.Component {
               <option value="Want to Read">Want to Read</option>
               <option value="Currently Reading">Currently Reading</option>
             </select>
-            <a className="book-modal__submit" onClick={this.addBook}>
-              <svg>
-                <use href="/images/sprite.svg#icon-check-circle" />
-              </svg>
-            </a>
+            {forSearch ? (
+              <a className="book-modal__submit" onClick={this.addBook}>
+                <svg>
+                  <use href="/images/sprite.svg#icon-check-circle" />
+                </svg>
+              </a>
+            ) : (
+              <a className="book-modal__submit" onClick={this.deleteBook}>
+                <svg>
+                  <use href="/images/sprite.svg#icon-x-circle" />
+                </svg>
+              </a>
+            )}
           </div>
         </Modal>
       </div>
@@ -123,7 +140,8 @@ class Book extends React.Component {
   }
 }
 const mapDispatchToProps = dispatch => ({
-  beginAddBook: book => dispatch(beginAddBook(book))
+  beginAddBook: book => dispatch(beginAddBook(book)),
+  beginDeleteBook: book => dispatch(beginDeleteBook(book))
 });
 
 export default connect(undefined, mapDispatchToProps)(Book);

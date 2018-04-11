@@ -1,4 +1,8 @@
-import { callPostToBooks, callGetBooks } from "../api/books";
+import {
+  callPostToBooks,
+  callGetBooks,
+  callDeleteFromBooks
+} from "../api/books";
 
 export const beginAddBook = (book = {}) => {
   return dispatch => {
@@ -9,6 +13,19 @@ export const beginAddBook = (book = {}) => {
 export const addBook = book => ({
   type: "ADD_BOOK",
   book
+});
+
+export const beginDeleteBook = book => {
+  return dispatch => {
+    return callDeleteFromBooks(book).then(({ data }) =>
+      dispatch(deleteBook(data))
+    );
+  };
+};
+
+export const deleteBook = ({ _id }) => ({
+  type: "DELETE_BOOK",
+  _id
 });
 
 export const beginSetBooks = token => {

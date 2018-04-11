@@ -87,7 +87,7 @@ app.get("/books/:id", authenticate, async (req, res) => {
     if (!book) {
       return res.status(404).send();
     }
-    res.send({ book });
+    res.send(book);
   } catch (e) {
     res.status(400).send();
   }
@@ -106,7 +106,7 @@ app.delete("/books/:id", authenticate, async (req, res) => {
     if (!book) {
       return res.status(404).send();
     }
-    res.send({ book });
+    res.send(book);
   } catch (e) {
     res.status(400).send();
   }
@@ -127,7 +127,7 @@ app.patch("/books/:id", express.json(), authenticate, async (req, res) => {
     if (!book) {
       return res.status(404).send();
     }
-    res.send({ book });
+    res.send(book);
   } catch (e) {
     res.status(400).send();
   }
