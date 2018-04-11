@@ -79,6 +79,7 @@ export default class BookSearch extends React.Component {
           loading={this.state.loading}
           perPage={12}
           bunched
+          forSearch
         />
       </section>
     );

@@ -15,15 +15,17 @@ export default class BooksContainer extends React.Component {
   };
 
   dropBooks = () => {
-    const { books, loading } = this.props;
+    const { books, loading, forSearch = false } = this.props;
     if (books.length) {
       return this.divideBooks(books).map(book => (
         <Book key={book.volumeID} book={book} />
       ));
     } else if (loading) {
-      return null;
+      return <p> Loading... </p>;
+    } else if (forSearch) {
+      return;
     } else {
-      <p> No Books </p>;
+      return <p> No Books </p>;
     }
   };
   paginateBackward = () => {
@@ -36,8 +38,9 @@ export default class BooksContainer extends React.Component {
     }
   };
   paginateForward = () => {
-    if (this.state.page >= 3) {
-      this.setState(() => ({ page: 3 }));
+    const lastPage = Math.ceil(this.props.books.length / this.props.perPage);
+    if (this.state.page >= lastPage) {
+      this.setState(() => ({ page: lastPage }));
     } else {
       this.setState(prevState => ({
         page: prevState.page + 1
@@ -46,9 +49,11 @@ export default class BooksContainer extends React.Component {
   };
   hidePaginateBackward = () => (this.state.page === 1 ? "u-hide" : "");
   hidePaginateForward = () => {
+    const { books, perPage } = this.props;
+    const { page } = this.state;
     if (
-      this.divideBooks(this.props.books).length < this.props.perPage ||
-      this.state.page === 3
+      this.divideBooks(books).length < perPage ||
+      books.length === page * perPage
     ) {
       return "u-hide";
     }
