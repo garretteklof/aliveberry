@@ -23,9 +23,10 @@ class Login extends React.Component {
     e.preventDefault();
     try {
       const response = await callLogin(this.state.email, this.state.password);
-      const token = localStorage.setItem("token", response.headers["x-auth"]);
-      this.props.login(response.data);
+      const token = response.headers["x-auth"];
+      localStorage.setItem("token", token);
       this.props.beginSetBooks(token);
+      this.props.login(response.data);
       this.props.history.push("/");
     } catch (e) {
       console.log(e);
