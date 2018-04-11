@@ -1,12 +1,21 @@
 import React from "react";
 import Modal from "react-modal";
 import { connect } from "react-redux";
-import { beginAddBook, beginDeleteBook } from "../../actions/books";
+import {
+  beginAddBook,
+  beginDeleteBook,
+  beginEditBook
+} from "../../actions/books";
 
 Modal.setAppElement("#app");
 
 class Book extends React.Component {
-  state = { showModal: false, shelf: "Want to Read" };
+  state = {
+    showModal: false,
+    shelf: this.props.book.shelfStatus
+      ? this.props.book.shelfStatus
+      : "Want to Read"
+  };
 
   handleOpenModal = () => {
     this.setState({ showModal: true });
@@ -16,7 +25,7 @@ class Book extends React.Component {
   };
   onShelfChange = e => {
     const shelf = e.target.value;
-    this.setState({ shelf });
+    this.setState({ shelf }, () => this.editBook());
   };
 
   addBook = async () => {
@@ -37,6 +46,13 @@ class Book extends React.Component {
     } catch (e) {
       // SET ERROR
     }
+  };
+
+  editBook = async () => {
+    const book = { ...this.props.book, shelfStatus: this.state.shelf };
+    try {
+      await this.props.beginEditBook(book);
+    } catch (e) {}
   };
 
   render() {
@@ -141,7 +157,8 @@ class Book extends React.Component {
 }
 const mapDispatchToProps = dispatch => ({
   beginAddBook: book => dispatch(beginAddBook(book)),
-  beginDeleteBook: book => dispatch(beginDeleteBook(book))
+  beginDeleteBook: book => dispatch(beginDeleteBook(book)),
+  beginEditBook: book => dispatch(beginEditBook(book))
 });
 
 export default connect(undefined, mapDispatchToProps)(Book);

@@ -1,6 +1,7 @@
 import {
-  callPostToBooks,
   callGetBooks,
+  callPostToBooks,
+  callPatchToBooks,
   callDeleteFromBooks
 } from "../api/books";
 
@@ -10,9 +11,21 @@ export const beginAddBook = (book = {}) => {
   };
 };
 
-export const addBook = book => ({
+const addBook = book => ({
   type: "ADD_BOOK",
   book
+});
+
+export const beginEditBook = book => {
+  return dispatch => {
+    return callPatchToBooks(book).then(({ data }) => dispatch(editBook(data)));
+  };
+};
+
+const editBook = ({ _id, shelfStatus }) => ({
+  type: "EDIT_BOOK",
+  _id,
+  shelfStatus
 });
 
 export const beginDeleteBook = book => {
@@ -23,7 +36,7 @@ export const beginDeleteBook = book => {
   };
 };
 
-export const deleteBook = ({ _id }) => ({
+const deleteBook = ({ _id }) => ({
   type: "DELETE_BOOK",
   _id
 });
@@ -33,7 +46,8 @@ export const beginSetBooks = token => {
     return callGetBooks(token).then(({ data }) => dispatch(setBooks(data)));
   };
 };
-export const setBooks = books => ({
+
+const setBooks = books => ({
   type: "SET_BOOKS",
   books
 });
