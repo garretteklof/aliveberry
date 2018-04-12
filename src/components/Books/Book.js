@@ -143,9 +143,9 @@ class Book extends React.Component {
                 </svg>
               </a>
             ) : (
-              <a className="book-modal__submit" onClick={this.deleteBook}>
+              <a className="book-modal__delete" onClick={this.deleteBook}>
                 <svg>
-                  <use href="/images/sprite.svg#icon-x-circle" />
+                  <use href="/images/sprite.svg#icon-trash" />
                 </svg>
               </a>
             )}

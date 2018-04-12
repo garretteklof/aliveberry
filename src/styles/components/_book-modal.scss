@@ -11,8 +11,12 @@
   height: 45rem;
   max-height: 100%;
   background-color: white;
-  border-radius: 0.8rem;
+  border: none;
+  border: 2rem solid transparent;
+  border-image: linear-gradient(to right, $light-pink, $green);
+  border-image-slice: 1;
   box-shadow: 0 2rem 4rem rgba(black, 0.2);
+
   &:focus {
     outline: none;
   }
@@ -63,7 +67,7 @@
   }
   &__select {
     cursor: pointer;
-    grid-column: 1 / -1;
+    grid-column: 2;
     justify-self: end;
     appearance: none;
     border-radius: 3px;
@@ -75,7 +79,7 @@
     color: white;
     align-self: stretch;
     width: 20rem;
-    padding: 0 1rem;
+    padding: 1rem 2rem;
     &:focus {
       outline: none;
       border: none;
@@ -84,6 +88,7 @@
   &__submit {
     cursor: pointer;
     grid-column: 1 / -1;
+    grid-row: 4;
     justify-self: end;
     transition: all 0.3s;
     &:hover {
@@ -109,7 +114,34 @@
       height: 3rem;
       width: 3rem;
       &:hover {
-        fill: darken($silver, 15%);
+        fill: $grey;
+      }
+    }
+  }
+  &__delete {
+    grid-column: 1;
+    grid-row: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: 1.6rem;
+    cursor: pointer;
+    background-color: $silver;
+    padding: 1rem 2rem;
+    border-radius: 3px;
+    transition: all 0.3s;
+    > svg {
+      fill: $grey;
+      height: 2rem;
+      width: 2rem;
+      transition: all 0.3s;
+    }
+    &:hover {
+      background-color: $grey;
+      > svg {
+        fill: $silver;
       }
     }
   }
