@@ -25,7 +25,7 @@ class Login extends React.Component {
       const response = await callLogin(this.state.email, this.state.password);
       const token = response.headers["x-auth"];
       localStorage.setItem("token", token);
-      this.props.beginSetBooks(token);
+      this.props.beginSetBooks();
       this.props.login(response.data);
       this.props.history.push("/");
     } catch (e) {

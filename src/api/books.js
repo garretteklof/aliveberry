@@ -1,12 +1,12 @@
 import axios from "axios";
 
-const token = localStorage.getItem("token");
-
-export const callGetBooks = token => {
+export const callGetBooks = () => {
+  const token = localStorage.getItem("token");
   return axios.get("/books", { headers: { "x-auth": token } });
 };
 
 export const callPostToBooks = book => {
+  const token = localStorage.getItem("token");
   return axios.post("/books", book, { headers: { "x-auth": token } });
 };
 

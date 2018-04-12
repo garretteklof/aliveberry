@@ -37,7 +37,7 @@ const renderApp = () => {
         headers: { "x-auth": token }
       });
       store.dispatch(login(currentUser.data));
-      await store.dispatch(beginSetBooks(token));
+      await store.dispatch(beginSetBooks());
       renderApp();
       history.push("/");
     } catch (e) {
