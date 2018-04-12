@@ -1,0 +1,11 @@
+.welcome {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(min-content, 10rem));
+  grid-row-gap: 2rem;
+  justify-items: center;
+  &__logo {
+    grid-column: 1 / -1;
+    height: auto;
+    width: 100%;
+  }
+}

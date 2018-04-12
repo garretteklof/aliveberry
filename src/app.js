@@ -44,11 +44,11 @@ const renderApp = () => {
       localStorage.removeItem("token");
       store.dispatch(logout());
       renderApp();
-      history.push("/login");
+      history.push("/welcome");
     }
   } else {
     renderApp();
-    history.push("/login");
+    history.push("/welcome");
   }
 })();
 

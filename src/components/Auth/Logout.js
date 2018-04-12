@@ -10,7 +10,7 @@ class Logout extends React.Component {
     callLogout(token).then(() => {
       localStorage.removeItem("token");
       this.props.logout();
-      this.props.history.push("/login");
+      this.props.history.push("/welcome");
     });
   };
 

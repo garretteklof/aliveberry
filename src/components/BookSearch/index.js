@@ -41,7 +41,12 @@ export default class BookSearch extends React.Component {
             thumbnailLink
           };
         })
-        .filter(book => book.thumbnailLink !== "");
+        .filter(
+          book =>
+            book.thumbnailLink !== "" &&
+            book.authors.length !== 0 &&
+            book.title.length !== 0
+        );
       this.setState(() => ({ data, loading: false }));
     } catch (e) {
       console.log(e);
