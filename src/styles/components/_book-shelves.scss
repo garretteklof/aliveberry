@@ -87,8 +87,10 @@
 
 .all {
   .books__heading {
-    border-bottom: 0.5rem solid $silver;
-    transition: all 0.3s;
+    border: none;
+    border-bottom: 0.5rem solid transparent;
+    border-image: linear-gradient(to right, $silver, $silver);
+    border-image-slice: 1;
     &:link,
     &:visited {
       text-decoration: none;
@@ -97,7 +99,8 @@
     &:hover,
     &:active,
     &:focus {
-      border-bottom-color: $pink;
+      border-image: linear-gradient(to right, $light-pink, $green);
+      border-image-slice: 1;
     }
   }
 }

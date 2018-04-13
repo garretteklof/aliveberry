@@ -1,0 +1,99 @@
+.auth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  &__backspace {
+    height: 3rem;
+    width: 3rem;
+    fill: $silver;
+    transition: all 0.3s;
+  }
+  &__nav {
+    margin-bottom: 2rem;
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    > a {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+    > a:hover > .auth__backspace--login {
+      fill: $green;
+    }
+    > a:hover > .auth__backspace--signup {
+      fill: $pink;
+    }
+    > img {
+      height: 8rem;
+      width: auto;
+    }
+  }
+
+  &__form {
+    display: grid;
+    grid-template-columns: minmax(min-content, 30rem);
+    grid-row-gap: 1.25rem;
+  }
+  &__form-group {
+    display: flex;
+    flex-direction: column;
+    height: 6rem;
+  }
+  &__input--signup {
+    background-color: $light-pink;
+    &:focus {
+      outline: none;
+      background-color: $light-pink;
+    }
+  }
+  &__input--login {
+    background-color: $green;
+    &:focus {
+      outline: none;
+      background-color: $green;
+    }
+  }
+  &__input {
+    border: none;
+    border-radius: 3px;
+    padding: 1rem;
+    font-size: 1.5rem;
+    color: white;
+    &::-webkit-input-placeholder {
+      color: darken($silver, 10%);
+    }
+    &:focus:invalid {
+      outline: none;
+    }
+    &:placeholder-shown {
+      border: 3px solid $snow;
+      background-color: white;
+      color: $onyx;
+    }
+  }
+  &__label {
+    font-size: 1.6rem;
+    font-weight: 700;
+    display: block;
+    margin-top: 0.7rem;
+    margin-left: 1rem;
+    transition: all 0.2s;
+  }
+  &__label--login {
+    color: darken($green, 20%);
+  }
+  &__label--signup {
+    color: $dark-pink;
+  }
+  &__input:placeholder-shown + &__label {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4rem);
+  }
+  &__btn {
+    justify-self: center;
+  }
+}
