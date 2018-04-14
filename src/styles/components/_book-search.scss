@@ -1,27 +1,38 @@
 .search {
   grid-column: center-start / center-end;
   display: grid;
-  grid-row-gap: 4rem;
+  grid-row-gap: 2rem;
   align-content: center;
   padding: 4rem;
   &__form {
-    display: flex;
+    display: grid;
+    grid-template-columns: min-content min-content;
     justify-content: center;
-    align-items: center;
   }
   &__input {
-    width: 40%;
-    font-size: 2rem;
+    order: 1;
+    font-size: 1.6rem;
     padding: 1.5rem 2rem;
-    border: 0.5rem solid $snow;
+    border: none;
     border-radius: 3rem;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
+    background-color: $pink;
+    color: white;
+    transition: all 0.3s;
     &:focus {
       outline: none;
     }
+    &:placeholder-shown {
+      background-color: $snow;
+      color: $onyx;
+    }
+    &::-webkit-input-placeholder {
+      font-style: italic;
+    }
   }
   &__select {
+    order: 2;
     cursor: pointer;
     appearance: none;
     border-radius: 0;
@@ -29,16 +40,35 @@
     border-bottom-right-radius: 3rem;
     border: none;
     outline: none;
-    background: no-repeat 92% $pink url("../../public/images/chevron-down.svg");
-    background-size: 3rem;
+    background: no-repeat 90% $pink url("../../public/images/chevron-down.svg");
+    background-size: 2.5rem;
     font-size: 1.6rem;
     color: white;
     align-self: stretch;
-    width: 12rem;
+    width: 10rem;
     padding: 0 1rem;
     &:focus {
       outline: none;
       border: none;
     }
+  }
+  &__label {
+    order: 3;
+    color: $dark-pink;
+    display: block;
+    margin-top: 0.7rem;
+    margin-left: 2rem;
+    transition: all 0.3s;
+    > svg {
+      fill: $pink;
+      height: 2rem;
+      width: 2rem;
+      margin-right: 1rem;
+    }
+  }
+  &__input:placeholder-shown + &__label {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4rem);
   }
 }

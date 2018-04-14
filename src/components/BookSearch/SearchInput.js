@@ -11,10 +11,22 @@ const SearchInput = ({
     <input
       className="search__input"
       type="text"
-      placeholder="find book"
+      placeholder="search books"
       onChange={onQueryChange}
       value={query}
+      autoFocus
     />
+    <label htmlFor="search" name="search" className="search__label">
+      <svg>
+        <use href="/images/sprite.svg#icon-search" />
+      </svg>
+      <svg>
+        <use href="/images/sprite.svg#icon-google" />
+      </svg>
+      <svg>
+        <use href="/images/sprite.svg#icon-books" />
+      </svg>
+    </label>
     <select className="search__select" value={field} onChange={onFieldChange}>
       <option value="intitle">Title</option>
       <option value="inauthor">Author</option>

@@ -3,11 +3,15 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: $snow;
 }
 
 .container {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 3px;
   display: grid;
-  grid-template-rows: minmax(100vh, 1fr);
+  grid-template-rows: minmax(50rem, 80vh);
   grid-template-columns:
     [sidebar-start] 14rem [sidebar-end center-start]
     repeat(6, [col-start] minmax(min-content, 14rem) [col-end])

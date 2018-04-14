@@ -1,4 +1,8 @@
 .btn {
+  &:active,
+  &:focus {
+    outline: none;
+  }
   &--logout {
     background-color: $snow;
     width: 100%;
@@ -17,7 +21,6 @@
     &:focus {
       transform: translateY(0);
       box-shadow: 0 1rem 2rem rgba(black, 0.05);
-      outline: none;
     }
   }
   &--signup {

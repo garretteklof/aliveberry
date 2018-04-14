@@ -73,7 +73,7 @@ class SignUp extends React.Component {
               Password
             </label>
           </div>
-          <button className="btn--signup">Signup</button>
+          <button className="btn btn--signup">Signup</button>
           {error && <span className="auth__error">{error}</span>}
         </form>
       </main>

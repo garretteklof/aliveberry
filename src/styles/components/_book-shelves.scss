@@ -1,5 +1,9 @@
 .book-shelves {
   grid-column: center-start / center-end;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 .books {
   min-height: 24rem;
@@ -23,7 +27,7 @@
     }
   }
   &__heading {
-    border-bottom: 0.5rem solid $snow;
+    border-bottom: 1rem solid $snow;
     grid-column: 1 / -1;
     justify-self: center;
     font-size: 3rem;
@@ -86,9 +90,10 @@
 }
 
 .all {
+  position: relative;
   .books__heading {
     border: none;
-    border-bottom: 0.5rem solid transparent;
+    border-bottom: 1rem solid transparent;
     border-image: linear-gradient(to right, $silver, $silver);
     border-image-slice: 1;
     &:link,

@@ -76,7 +76,7 @@ class Login extends React.Component {
               Password
             </label>
           </div>
-          <button className="btn--login">Login</button>
+          <button className="btn btn--login">Login</button>
           {error && <span className="auth__error">{error}</span>}
         </form>
       </main>
