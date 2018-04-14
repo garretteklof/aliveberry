@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Loader from "react-loaders";
 
 import Book from "./Book";
 
@@ -21,7 +22,7 @@ export default class BooksContainer extends React.Component {
         <Book key={book.volumeID} book={book} forSearch={forSearch} />
       ));
     } else if (loading) {
-      return <p> Loading... </p>;
+      return <Loader type="ball-pulse-rise" />;
     } else if (forSearch) {
       return;
     } else {

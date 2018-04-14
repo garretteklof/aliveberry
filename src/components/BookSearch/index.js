@@ -10,7 +10,7 @@ export default class BookSearch extends React.Component {
   state = { query: "", field: "intitle", data: [], loading: false };
 
   loadData = async () => {
-    this.setState(() => ({ loading: true }));
+    this.setState(() => ({ loading: true, data: [] }));
     try {
       const response = await callGoogleBooks(
         this.state.query,
