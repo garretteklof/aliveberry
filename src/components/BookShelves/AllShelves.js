@@ -2,9 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 
 import BooksContainer from "../Books/BooksContainer";
+import ScrollNotification from "./ScrollNotification";
 
 const AllShelves = ({ rBooks, wtrBooks, crBooks }) => (
   <div className="all">
+    <ScrollNotification />
     <BooksContainer books={rBooks} shelf={"Read"} perPage={8} bunched />
     <BooksContainer
       books={wtrBooks}
