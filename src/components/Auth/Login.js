@@ -86,7 +86,7 @@ class Login extends React.Component {
 
 const mapDispatchToProps = dispatch => ({
   login: user => dispatch(login(user)),
-  beginSetBooks: token => dispatch(beginSetBooks(token))
+  beginSetBooks: () => dispatch(beginSetBooks())
 });
 
 export default connect(undefined, mapDispatchToProps)(Login);

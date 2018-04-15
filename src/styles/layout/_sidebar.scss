@@ -4,6 +4,11 @@
   flex-direction: column;
   border-right: 1rem solid $snow;
   padding: 1rem;
+  // @media only screen and (max-width: $bp-1000) {
+  //   grid-column: center-start / center-end;
+  //   flex-direction: row;
+  //   border-right: none;
+  // }
 
   &__top {
     display: inherit;
@@ -11,10 +16,17 @@
     align-items: center;
     margin-bottom: 2rem;
     font-size: 1rem;
+    // @media only screen and (max-width: $bp-1000) {
+    //   margin-bottom: 0;
+    // }
   }
 
   &__logo {
     width: 6rem;
+    // @media only screen and (max-width: $bp-1000) {
+    //   width: 5rem;
+    //   margin-right: 1rem;
+    // }
   }
 
   &__nav {

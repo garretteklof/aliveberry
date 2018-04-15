@@ -26,7 +26,12 @@ export default class BooksContainer extends React.Component {
     } else if (forSearch) {
       return;
     } else {
-      return <p> No Books </p>;
+      return (
+        <div className="no-books">
+          <p>No books on the shelf 😔</p>
+          <Link to="/">Find Book</Link>
+        </div>
+      );
     }
   };
   paginateBackward = () => {
@@ -61,9 +66,10 @@ export default class BooksContainer extends React.Component {
     return "";
   };
   render() {
-    const { books, shelf, bunched } = this.props;
+    const { books, shelf, bunched, forSearch, error } = this.props;
     return (
-      <section className="books">
+      <section className={forSearch ? "books" : "books u-marginless"}>
+        {error && <p className="books__error">{error}</p>}
         {!!this.state.page && (
           <div className={bunched ? "books__grid--bunched" : "books__grid"}>
             {!!shelf &&

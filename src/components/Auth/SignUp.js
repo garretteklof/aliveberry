@@ -24,6 +24,7 @@ class SignUp extends React.Component {
     try {
       const response = await callAddUser(this.state.email, this.state.password);
       localStorage.setItem("token", response.headers["x-auth"]);
+      this.props.beginSetBooks();
       this.props.login(response.data);
       this.props.history.push("/");
     } catch (e) {
@@ -82,7 +83,8 @@ class SignUp extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  login: user => dispatch(login(user))
+  login: user => dispatch(login(user)),
+  beginSetBooks: () => dispatch(beginSetBooks())
 });
 
 export default connect(undefined, mapDispatchToProps)(SignUp);

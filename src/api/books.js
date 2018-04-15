@@ -11,6 +11,7 @@ export const callPostToBooks = book => {
 };
 
 export const callPatchToBooks = ({ _id, shelfStatus }) => {
+  const token = localStorage.getItem("token");
   return axios.patch(
     `/books/${_id}`,
     { shelfStatus },
@@ -21,5 +22,6 @@ export const callPatchToBooks = ({ _id, shelfStatus }) => {
 };
 
 export const callDeleteFromBooks = ({ _id }) => {
+  const token = localStorage.getItem("token");
   return axios.delete(`/books/${_id}`, { headers: { "x-auth": token } });
 };

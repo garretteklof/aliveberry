@@ -41,9 +41,9 @@ const deleteBook = ({ _id }) => ({
   _id
 });
 
-export const beginSetBooks = token => {
+export const beginSetBooks = () => {
   return dispatch => {
-    return callGetBooks(token).then(({ data }) => dispatch(setBooks(data)));
+    return callGetBooks().then(({ data }) => dispatch(setBooks(data)));
   };
 };
 

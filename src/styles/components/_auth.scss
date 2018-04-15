@@ -50,10 +50,10 @@
     }
   }
   &__input--login {
-    background-color: $green;
+    background-color: darken($green, 20%);
     &:focus {
       outline: none;
-      background-color: $green;
+      background-color: darken($green, 20%);
     }
   }
   &__input {
