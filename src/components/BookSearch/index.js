@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import MediaQuery from "react-responsive";
 
 import SearchInput from "./SearchInput";
 import BooksContainer from "../Books/BooksContainer";
@@ -96,14 +97,91 @@ export default class BookSearch extends React.Component {
           onFieldChange={this.onFieldChange}
           submitForm={this.submitForm}
         />
-        <BooksContainer
-          books={this.state.data}
-          loading={this.state.loading}
-          error={this.state.error}
-          perPage={12}
-          bunched
-          forSearch
-        />
+
+        <MediaQuery maxWidth={"56.25em"}>
+          {matches => {
+            if (matches) {
+              return (
+                <MediaQuery maxWidth={"50em"}>
+                  {matches => {
+                    if (matches) {
+                      return (
+                        <MediaQuery maxWidth={"43.75em"}>
+                          {matches => {
+                            if (matches) {
+                              return (
+                                <MediaQuery maxWidth={"28.125em"}>
+                                  {matches => {
+                                    if (matches) {
+                                      return (
+                                        <BooksContainer
+                                          books={this.state.data}
+                                          loading={this.state.loading}
+                                          error={this.state.error}
+                                          perPage={3}
+                                          bunched
+                                          forSearch
+                                        />
+                                      );
+                                    } else {
+                                      return (
+                                        <BooksContainer
+                                          books={this.state.data}
+                                          loading={this.state.loading}
+                                          error={this.state.error}
+                                          perPage={4}
+                                          bunched
+                                          forSearch
+                                        />
+                                      );
+                                    }
+                                  }}
+                                </MediaQuery>
+                              );
+                            } else {
+                              return (
+                                <BooksContainer
+                                  books={this.state.data}
+                                  loading={this.state.loading}
+                                  error={this.state.error}
+                                  perPage={6}
+                                  bunched
+                                  forSearch
+                                />
+                              );
+                            }
+                          }}
+                        </MediaQuery>
+                      );
+                    } else {
+                      return (
+                        <BooksContainer
+                          books={this.state.data}
+                          loading={this.state.loading}
+                          error={this.state.error}
+                          perPage={10}
+                          bunched
+                          forSearch
+                        />
+                      );
+                    }
+                  }}
+                </MediaQuery>
+              );
+            } else {
+              return (
+                <BooksContainer
+                  books={this.state.data}
+                  loading={this.state.loading}
+                  error={this.state.error}
+                  perPage={12}
+                  bunched
+                  forSearch
+                />
+              );
+            }
+          }}
+        </MediaQuery>
       </section>
     );
   }

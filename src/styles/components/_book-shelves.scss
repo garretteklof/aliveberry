@@ -8,6 +8,9 @@
 .books {
   min-height: 24rem;
   margin-top: 2rem;
+  @media only screen and (max-width: $bp-450) {
+    margin-top: 2rem !important;
+  }
   &__error {
     text-align: center;
     text-transform: uppercase;
@@ -20,6 +23,9 @@
     align-items: center;
     justify-items: center;
     grid-row-gap: 2rem;
+    @media only screen and (max-width: $bp-450) {
+      grid-template-columns: minmax(min-content, 1fr);
+    }
     &--bunched {
       display: grid;
       grid-template-columns: minmax(min-content, 1fr);
@@ -28,15 +34,25 @@
       .books__book {
         &:not(:first-of-type) {
           margin-left: -3rem;
+          @media only screen and (max-width: $bp-800) {
+            margin-left: 0;
+          }
+        }
+      }
+      .books__book-cover {
+        @media only screen and (max-width: $bp-350) {
+          width: 7rem;
         }
       }
     }
   }
   &__heading {
+    color: $dark-pink;
     border-bottom: 1rem solid $snow;
     grid-column: 1 / -1;
     justify-self: center;
     font-size: 3rem;
+    font-weight: 700;
     padding: 1rem;
   }
 
@@ -45,6 +61,8 @@
     justify-content: center;
     align-items: center;
     height: 16rem;
+    max-width: 68.8rem;
+    margin: 0 auto;
     > p {
       grid-column: 1 / -1;
       justify-self: center;
@@ -87,6 +105,9 @@
       box-shadow: 0 1.5rem 4rem rgba(black, 0.4);
       z-index: 10;
     }
+    @media only screen and (max-width: $bp-450) {
+      width: 10rem;
+    }
   }
 }
 .books__book > a:active > .books__book-cover {
@@ -104,8 +125,9 @@
     border-image-slice: 1;
     &:link,
     &:visited {
+      color: $dark-pink;
+      font-weight: 700;
       text-decoration: none;
-      color: $onyx;
     }
     &:hover,
     &:active,

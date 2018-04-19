@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import MediaQuery from "react-responsive";
 
 import BooksContainer from "../Books/BooksContainer";
 import ScrollNotification from "./ScrollNotification";
@@ -7,19 +8,174 @@ import ScrollNotification from "./ScrollNotification";
 const AllShelves = ({ rBooks, wtrBooks, crBooks }) => (
   <div className="all">
     <ScrollNotification />
-    <BooksContainer books={rBooks} shelf={"Read"} perPage={8} bunched />
-    <BooksContainer
-      books={wtrBooks}
-      shelf={"Want to Read"}
-      perPage={8}
-      bunched
-    />
-    <BooksContainer
-      books={crBooks}
-      shelf={"Currently Reading"}
-      perPage={8}
-      bunched
-    />
+    <MediaQuery maxWidth={"50em"}>
+      {matches => {
+        if (matches) {
+          return (
+            <MediaQuery maxWidth={"43.75em"}>
+              {matches => {
+                if (matches) {
+                  return (
+                    <MediaQuery maxWidth={"28.125em"}>
+                      {matches => {
+                        if (matches) {
+                          return (
+                            <BooksContainer
+                              books={rBooks}
+                              shelf={"Read"}
+                              perPage={3}
+                              bunched
+                            />
+                          );
+                        } else {
+                          return (
+                            <BooksContainer
+                              books={rBooks}
+                              shelf={"Read"}
+                              perPage={4}
+                              bunched
+                            />
+                          );
+                        }
+                      }}
+                    </MediaQuery>
+                  );
+                } else {
+                  return (
+                    <BooksContainer
+                      books={rBooks}
+                      shelf={"Read"}
+                      perPage={6}
+                      bunched
+                    />
+                  );
+                }
+              }}
+            </MediaQuery>
+          );
+        } else {
+          return (
+            <BooksContainer books={rBooks} shelf={"Read"} perPage={8} bunched />
+          );
+        }
+      }}
+    </MediaQuery>
+
+    <MediaQuery maxWidth={"50em"}>
+      {matches => {
+        if (matches) {
+          return (
+            <MediaQuery maxWidth={"43.75em"}>
+              {matches => {
+                if (matches) {
+                  return (
+                    <MediaQuery maxWidth={"28.125em"}>
+                      {matches => {
+                        if (matches) {
+                          return (
+                            <BooksContainer
+                              books={wtrBooks}
+                              shelf={"Want to Read"}
+                              perPage={3}
+                              bunched
+                            />
+                          );
+                        } else {
+                          return (
+                            <BooksContainer
+                              books={wtrBooks}
+                              shelf={"Want to Read"}
+                              perPage={4}
+                              bunched
+                            />
+                          );
+                        }
+                      }}
+                    </MediaQuery>
+                  );
+                } else {
+                  return (
+                    <BooksContainer
+                      books={wtrBooks}
+                      shelf={"Want to Read"}
+                      perPage={6}
+                      bunched
+                    />
+                  );
+                }
+              }}
+            </MediaQuery>
+          );
+        } else {
+          return (
+            <BooksContainer
+              books={wtrBooks}
+              shelf={"Want to Read"}
+              perPage={8}
+              bunched
+            />
+          );
+        }
+      }}
+    </MediaQuery>
+
+    <MediaQuery maxWidth={"50em"}>
+      {matches => {
+        if (matches) {
+          return (
+            <MediaQuery maxWidth={"43.75em"}>
+              {matches => {
+                if (matches) {
+                  return (
+                    <MediaQuery maxWidth={"28.125em"}>
+                      {matches => {
+                        if (matches) {
+                          return (
+                            <BooksContainer
+                              books={crBooks}
+                              shelf={"Currently Reading"}
+                              perPage={3}
+                              bunched
+                            />
+                          );
+                        } else {
+                          return (
+                            <BooksContainer
+                              books={crBooks}
+                              shelf={"Currently Reading"}
+                              perPage={4}
+                              bunched
+                            />
+                          );
+                        }
+                      }}
+                    </MediaQuery>
+                  );
+                } else {
+                  return (
+                    <BooksContainer
+                      books={crBooks}
+                      shelf={"Currently Reading"}
+                      perPage={6}
+                      bunched
+                    />
+                  );
+                }
+              }}
+            </MediaQuery>
+          );
+        } else {
+          return (
+            <BooksContainer
+              books={crBooks}
+              shelf={"Currently Reading"}
+              perPage={8}
+              bunched
+            />
+          );
+        }
+      }}
+    </MediaQuery>
   </div>
 );
 

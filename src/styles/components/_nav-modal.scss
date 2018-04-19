@@ -1,0 +1,81 @@
+.nav-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $snow;
+  &__nav {
+    @include center-flex;
+    flex-direction: column;
+  }
+  &__link {
+    cursor: pointer;
+    font-size: 6rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    background-color: $pink;
+    color: $snow;
+    margin: 1rem 0;
+    padding: 1rem;
+    @media only screen and (max-width: $bp-800) {
+      &:first-of-type {
+        padding: 0;
+        max-width: 35rem;
+      }
+    }
+    @media only screen and (max-width: $bp-450) {
+      &:first-of-type {
+        max-width: 30rem;
+      }
+    }
+  }
+  &__shelf-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 1rem;
+    > a {
+      text-decoration: none;
+      font-size: 2rem;
+      color: $snow;
+      background-color: $pink;
+      padding: 1rem;
+      margin: 0.5rem 0;
+    }
+  }
+  &__close {
+    cursor: pointer;
+    position: absolute;
+    top: 3rem;
+    right: 3rem;
+    > svg {
+      fill: $silver;
+      height: 5rem;
+      width: 5rem;
+      &:hover {
+        fill: $grey;
+      }
+    }
+  }
+  &__logo {
+    position: absolute;
+    bottom: 3rem;
+    left: 3rem;
+    width: 4rem;
+    height: auto;
+  }
+}
+.btn--logout {
+  @media only screen and (max-width: $bp-1000) {
+    position: absolute;
+    bottom: 3rem;
+    right: 3rem;
+    width: 15rem;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    border: 0.5rem solid $silver;
+    color: $grey;
+  }
+}

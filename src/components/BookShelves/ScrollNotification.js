@@ -1,4 +1,5 @@
 import React from "react";
+import MediaQuery from "react-responsive";
 
 export default class ScrollNotification extends React.Component {
   state = { notify: false };
@@ -43,18 +44,20 @@ export default class ScrollNotification extends React.Component {
   render() {
     const { notify } = this.state;
     return (
-      <aside className="scroll-notification">
-        {notify ? (
-          <div className="scroll-notification__wrapper">
-            <svg className="scroll-notification__svg">
-              <use href="/images/sprite.svg#icon-chevrons-down" />
-            </svg>
-            <span className="scroll-notification__text">Can Scroll!</span>
-          </div>
-        ) : (
-          ""
-        )}
-      </aside>
+      <MediaQuery minWidth={"62.5em"}>
+        <aside className="scroll-notification">
+          {notify ? (
+            <div className="scroll-notification__wrapper">
+              <svg className="scroll-notification__svg">
+                <use href="/images/sprite.svg#icon-chevrons-down" />
+              </svg>
+              <span className="scroll-notification__text">Can Scroll!</span>
+            </div>
+          ) : (
+            ""
+          )}
+        </aside>
+      </MediaQuery>
     );
   }
 }

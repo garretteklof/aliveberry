@@ -36,48 +36,53 @@ class SignUp extends React.Component {
   render() {
     const { email, password, error } = this.state;
     return (
-      <main className="auth">
-        <div className="auth__nav">
-          <Link to="/welcome">
-            <svg className="auth__backspace auth__backspace--signup">
-              <use href="/images/sprite.svg#icon-arrow-left-circle" />
-            </svg>
-          </Link>
-          <img src="/images/aliveberry.svg" />
-        </div>
-        <form className="auth__form" onSubmit={this.onSignUp}>
-          <div className="auth__form-group">
-            <input
-              className="auth__input auth__input--signup"
-              type="email"
-              placeholder="email"
-              value={email}
-              onChange={this.onEmailChange}
-              autoFocus
-            />
-            <label htmlFor="email" className="auth__label auth__label--signup">
-              Email
-            </label>
+      <div className="u-center-flex">
+        <main className="auth">
+          <div className="auth__nav">
+            <Link to="/welcome">
+              <svg className="auth__backspace auth__backspace--signup">
+                <use href="/images/sprite.svg#icon-arrow-left-circle" />
+              </svg>
+            </Link>
+            <img src="/images/aliveberry.svg" />
           </div>
-          <div className="auth__form-group">
-            <input
-              className="auth__input auth__input--signup"
-              type="password"
-              placeholder="password"
-              value={password}
-              onChange={this.onPasswordChange}
-            />
-            <label
-              htmlFor="password"
-              className="auth__label auth__label--signup"
-            >
-              Password
-            </label>
-          </div>
-          <button className="btn btn--signup">Signup</button>
-          {error && <span className="auth__error">{error}</span>}
-        </form>
-      </main>
+          <form className="auth__form" onSubmit={this.onSignUp}>
+            <div className="auth__form-group">
+              <input
+                className="auth__input auth__input--signup"
+                type="email"
+                placeholder="email"
+                value={email}
+                onChange={this.onEmailChange}
+                autoFocus
+              />
+              <label
+                htmlFor="email"
+                className="auth__label auth__label--signup"
+              >
+                Email
+              </label>
+            </div>
+            <div className="auth__form-group">
+              <input
+                className="auth__input auth__input--signup"
+                type="password"
+                placeholder="password"
+                value={password}
+                onChange={this.onPasswordChange}
+              />
+              <label
+                htmlFor="password"
+                className="auth__label auth__label--signup"
+              >
+                Password
+              </label>
+            </div>
+            <button className="btn btn--signup">Signup</button>
+            {error && <span className="auth__error">{error}</span>}
+          </form>
+        </main>
+      </div>
     );
   }
 }

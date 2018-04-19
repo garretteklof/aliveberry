@@ -7,3 +7,11 @@
 .u-marginless {
   margin: 0 !important;
 }
+
+.u-center-flex {
+  height: 100% !important;
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}

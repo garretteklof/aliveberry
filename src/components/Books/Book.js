@@ -1,6 +1,7 @@
 import React from "react";
 import Modal from "react-modal";
 import { connect } from "react-redux";
+import MediaQuery from "react-responsive";
 import {
   beginAddBook,
   beginDeleteBook,
@@ -122,11 +123,27 @@ class Book extends React.Component {
                   : "No ISBN or other identifying information."}
               </p>
             </div>
-            <p className="book-modal__book-description">
-              {description.length > 400
-                ? description.slice(0, 400) + " ..."
-                : description}
-            </p>
+            <MediaQuery maxWidth={"43.75em"}>
+              {matches => {
+                if (matches) {
+                  return (
+                    <p className="book-modal__book-description">
+                      {description.length > 200
+                        ? description.slice(0, 200) + " ..."
+                        : description}
+                    </p>
+                  );
+                } else {
+                  return (
+                    <p className="book-modal__book-description">
+                      {description.length > 400
+                        ? description.slice(0, 400) + " ..."
+                        : description}
+                    </p>
+                  );
+                }
+              }}
+            </MediaQuery>
             <select
               className="book-modal__select"
               value={this.state.shelf}

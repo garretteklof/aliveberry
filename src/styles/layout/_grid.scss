@@ -23,12 +23,11 @@ body {
   @media only screen and (max-width: $bp-1100) {
     grid-template-rows: minmax(50rem, 95vh);
   }
-  // @media only screen and (max-width: $bp-1000) {
-  //   padding: 0;
-  //   grid-template-rows: 8rem 1fr;
-  //   grid-template-columns:
-  //     [center-start]
-  //     repeat(6, [col-start] minmax(min-content, 14rem) [col-end])
-  //     [center-end];
-  // }
+  @media only screen and (max-width: $bp-1000) {
+    grid-template-rows: 8rem 1fr;
+    grid-template-columns:
+      [center-start]
+      repeat(6, [col-start] minmax(min-content, 16.67rem) [col-end])
+      [center-end];
+  }
 }
