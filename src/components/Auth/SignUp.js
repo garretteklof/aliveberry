@@ -27,8 +27,7 @@ class SignUp extends React.Component {
       this.props.login(response.data);
       this.props.history.push("/");
     } catch (e) {
-      console.log(e);
-      this.setState({ error: "There has been an error" });
+      this.setState({ error: "Invalid email and/or password." });
     }
   };
 
