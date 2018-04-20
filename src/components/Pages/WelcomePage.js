@@ -17,16 +17,16 @@ const WelcomePage = () => (
       <Link to="/login" className="btn btn--login">
         Login
       </Link>
+      <a
+        href="https://github.com/garretteklof/aliveberry"
+        className="github"
+        target="_blank"
+      >
+        <svg>
+          <use href="/images/sprite.svg#icon-github" />
+        </svg>
+      </a>
     </main>
-    <a
-      href="https://github.com/garretteklof/aliveberry"
-      className="github"
-      target="_blank"
-    >
-      <svg>
-        <use href="/images/sprite.svg#icon-github" />
-      </svg>
-    </a>
   </div>
 );
 

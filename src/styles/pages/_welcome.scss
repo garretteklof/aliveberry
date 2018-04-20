@@ -37,12 +37,9 @@
 }
 
 .github {
+  grid-column: 1 / -1;
   > svg {
-    position: absolute;
-    top: 1rem;
-    right: 0;
-    left: 0;
-    margin: auto;
+    margin-top: 6rem;
     height: 4rem;
     width: 4rem;
     fill: $onyx;
@@ -53,14 +50,14 @@
       transform: translateY(0);
     }
     &:hover {
-      transform: translateY(-4px);
+      transform: scale(1.1);
     }
   }
 }
 
 @keyframes enter {
   0% {
-    transform: translateY(-100rem);
+    transform: translateY(100rem);
   }
   100% {
     transform: translateY(0);
