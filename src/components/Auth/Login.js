@@ -35,10 +35,19 @@ class Login extends React.Component {
     }
   };
 
+  loginExampleAccount = () => {
+    this.setState(
+      {
+        email: "testdrive@aliveberry.com",
+        password: "abc123"
+      },
+      () => this.formButton.click()
+    );
+  };
   render() {
     const { email, password, error } = this.state;
     return (
-      <div className="u-center-flex">
+      <div className="u-center-flex u-flex-dir-col">
         <main className="auth">
           <div className="auth__nav">
             <Link to="/welcome">
@@ -77,9 +86,30 @@ class Login extends React.Component {
                 Password
               </label>
             </div>
-            <button className="btn btn--login">Login</button>
+            <button
+              className="btn btn--login"
+              ref={button => {
+                this.formButton = button;
+              }}
+            >
+              Login
+            </button>
             {error && <span className="auth__error">{error}</span>}
           </form>
+          <aside className="auth__example">
+            <svg>
+              <use href="/images/sprite.svg#icon-new" />
+            </svg>
+            <p>Test drive Aliveberry with an example login!</p>
+            <a
+              className="btn btn--example"
+              role="button"
+              type="submit"
+              onClick={this.loginExampleAccount}
+            >
+              Try it!
+            </a>
+          </aside>
         </main>
       </div>
     );

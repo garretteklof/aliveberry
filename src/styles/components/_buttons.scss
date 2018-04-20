@@ -56,4 +56,18 @@
       background-color: $green;
     }
   }
+  &--example {
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    padding: 1rem 2rem;
+    background-color: $snow;
+    color: $light-pink;
+    border-radius: 3px;
+    transition: all 0.3s;
+    &:hover {
+      background-color: $light-pink;
+      color: $snow;
+    }
+  }
 }
