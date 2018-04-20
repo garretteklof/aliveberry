@@ -1,12 +1,68 @@
 .welcome {
   display: grid;
-  grid-template-columns: repeat(2, minmax(min-content, 10rem));
+  grid-template-columns: repeat(2, minmax(min-content, 20rem));
   grid-row-gap: 2rem;
   grid-column-gap: 2rem;
   justify-items: center;
+  align-items: center;
+  @media only screen and (max-width: $bp-450) {
+    grid-template-columns: repeat(2, minmax(min-content, 10rem));
+  }
   &__logo {
     grid-column: 1 / -1;
-    height: auto;
-    width: 100%;
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    grid-column-gap: 2rem;
+    justify-items: center;
+    align-items: center;
+    > img {
+      height: auto;
+      width: 12rem;
+    }
+    > h1 {
+      color: $dark-pink;
+      font-size: 5rem;
+    }
+    @media only screen and (max-width: $bp-350) {
+      > img {
+        height: auto;
+        width: 8rem;
+      }
+      > h1 {
+        color: $dark-pink;
+        font-size: 3rem;
+      }
+    }
+  }
+}
+
+.github {
+  > svg {
+    position: absolute;
+    top: 1rem;
+    right: 0;
+    left: 0;
+    margin: auto;
+    height: 4rem;
+    width: 4rem;
+    fill: $onyx;
+    animation: enter 3s;
+    &:focus,
+    &:active {
+      outline: none;
+      transform: translateY(0);
+    }
+    &:hover {
+      transform: translateY(-4px);
+    }
+  }
+}
+
+@keyframes enter {
+  0% {
+    transform: translateY(-100rem);
+  }
+  100% {
+    transform: translateY(0);
   }
 }

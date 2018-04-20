@@ -7,7 +7,10 @@ import SignUp from "../Auth/SignUp";
 const WelcomePage = () => (
   <div className="u-center-flex">
     <main className="welcome">
-      <img src="/images/aliveberry.svg" className="welcome__logo" />
+      <div className="welcome__logo">
+        <img src="/images/aliveberry.svg" />
+        <h1>Aliveberry</h1>
+      </div>
       <Link to="/signup" className="btn btn--signup">
         Signup
       </Link>
@@ -15,6 +18,15 @@ const WelcomePage = () => (
         Login
       </Link>
     </main>
+    <a
+      href="https://github.com/garretteklof/aliveberry"
+      className="github"
+      target="_blank"
+    >
+      <svg>
+        <use href="/images/sprite.svg#icon-github" />
+      </svg>
+    </a>
   </div>
 );
 
