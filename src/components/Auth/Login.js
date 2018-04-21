@@ -14,9 +14,11 @@ class Login extends React.Component {
 
   componentWillMount() {
     document.body.style.overflow = "hidden";
+    document.body.style.position = "relative";
   }
   componentWillUnmount() {
-    document.body.style.overflow = "visible";
+    document.body.style.overflow = null;
+    document.body.style.position = null;
   }
 
   onEmailChange = e => {
@@ -106,21 +108,21 @@ class Login extends React.Component {
             </button>
             {error && <span className="auth__error">{error}</span>}
           </form>
-          <aside className="auth__example">
-            <svg>
-              <use xlinkHref="/images/sprite.svg#icon-new" />
-            </svg>
-            <p>Test drive Aliveberry with an example login!</p>
-            <a
-              className="btn btn--example"
-              role="button"
-              type="submit"
-              onClick={this.loginExampleAccount}
-            >
-              Try it!
-            </a>
-          </aside>
         </main>
+        <aside className="auth__example">
+          <svg>
+            <use xlinkHref="/images/sprite.svg#icon-new" />
+          </svg>
+          <p>Test drive Aliveberry with an example login!</p>
+          <a
+            className="btn btn--example"
+            role="button"
+            type="submit"
+            onClick={this.loginExampleAccount}
+          >
+            Try it!
+          </a>
+        </aside>
       </div>
     );
   }

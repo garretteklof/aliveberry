@@ -145,13 +145,15 @@
       font-size: 1.5rem;
     }
     @media only screen and (max-width: $bp-800) {
-      transform: rotate(0);
+      transform: rotate(0) translate(0, calc(50vh - 50%));
       flex-direction: row;
       justify-content: space-around;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      margin: auto;
+      // bottom: 0;
+      // left: 0;
+      // right: 0;
+      // margin: auto;
+      bottom: auto;
+      right: auto;
       height: 10rem;
       width: 100%;
       clip-path: none;
