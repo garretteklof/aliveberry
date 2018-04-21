@@ -23,7 +23,7 @@ const WelcomePage = () => (
         target="_blank"
       >
         <svg>
-          <use href="/images/sprite.svg#icon-github" />
+          <use xlinkHref="/images/sprite.svg#icon-github" />
         </svg>
       </a>
     </main>

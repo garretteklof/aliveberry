@@ -85,7 +85,7 @@ class Book extends React.Component {
         >
           <a className="book-modal__close" onClick={this.handleCloseModal}>
             <svg>
-              <use href="/images/sprite.svg#icon-x-circle" />
+              <use xlinkHref="/images/sprite.svg#icon-x-circle" />
             </svg>
           </a>
           <div className="book-modal__grid">
@@ -96,7 +96,7 @@ class Book extends React.Component {
             />
             <div className="book-modal__book-info">
               <svg>
-                <use href="/images/sprite.svg#icon-book" />
+                <use xlinkHref="/images/sprite.svg#icon-book" />
               </svg>
               <div
                 className={`book-modal__book-titles ${
@@ -107,15 +107,15 @@ class Book extends React.Component {
                 <p>{subtitle}</p>
               </div>
               <svg>
-                <use href="/images/sprite.svg#icon-authors" />
+                <use xlinkHref="/images/sprite.svg#icon-authors" />
               </svg>
               <p>{authors ? authors.join(", ") : "No author information."}</p>
               <svg>
-                <use href="/images/sprite.svg#icon-book-open" />
+                <use xlinkHref="/images/sprite.svg#icon-book-open" />
               </svg>
               <p>{pageCount ? `${pageCount} pages` : "No page information."}</p>
               <svg>
-                <use href="/images/sprite.svg#icon-hash" />
+                <use xlinkHref="/images/sprite.svg#icon-hash" />
               </svg>
               <p>
                 {identifiers.length
@@ -156,13 +156,13 @@ class Book extends React.Component {
             {forSearch ? (
               <a className="book-modal__submit" onClick={this.addBook}>
                 <svg>
-                  <use href="/images/sprite.svg#icon-check-circle" />
+                  <use xlinkHref="/images/sprite.svg#icon-check-circle" />
                 </svg>
               </a>
             ) : (
               <a className="book-modal__delete" onClick={this.deleteBook}>
                 <svg>
-                  <use href="/images/sprite.svg#icon-trash" />
+                  <use xlinkHref="/images/sprite.svg#icon-trash" />
                 </svg>
               </a>
             )}

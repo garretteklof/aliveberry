@@ -49,7 +49,7 @@ export default class ScrollNotification extends React.Component {
           {notify ? (
             <div className="scroll-notification__wrapper">
               <svg className="scroll-notification__svg">
-                <use href="/images/sprite.svg#icon-chevrons-down" />
+                <use xlinkHref="/images/sprite.svg#icon-chevrons-down" />
               </svg>
               <span className="scroll-notification__text">Can Scroll!</span>
             </div>

@@ -53,7 +53,7 @@ class Login extends React.Component {
           <div className="auth__nav">
             <Link to="/welcome">
               <svg className="auth__backspace auth__backspace--login">
-                <use href="/images/sprite.svg#icon-arrow-left-circle" />
+                <use xlinkHref="/images/sprite.svg#icon-arrow-left-circle" />
               </svg>
             </Link>
             <img src="/images/aliveberry.svg" />
@@ -99,7 +99,7 @@ class Login extends React.Component {
           </form>
           <aside className="auth__example">
             <svg>
-              <use href="/images/sprite.svg#icon-new" />
+              <use xlinkHref="/images/sprite.svg#icon-new" />
             </svg>
             <p>Test drive Aliveberry with an example login!</p>
             <a

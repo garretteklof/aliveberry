@@ -39,7 +39,7 @@ class SignUp extends React.Component {
           <div className="auth__nav">
             <Link to="/welcome">
               <svg className="auth__backspace auth__backspace--signup">
-                <use href="/images/sprite.svg#icon-arrow-left-circle" />
+                <use xlinkHref="/images/sprite.svg#icon-arrow-left-circle" />
               </svg>
             </Link>
             <img src="/images/aliveberry.svg" />

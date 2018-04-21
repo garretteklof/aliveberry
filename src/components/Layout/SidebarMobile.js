@@ -28,7 +28,7 @@ export default class SidebarMobile extends React.Component {
           <h1>Aliveberry</h1>
         </div>
         <svg className="sidebar__burger" onClick={this.handleOpenModal}>
-          <use href="/images/sprite.svg#icon-menu" />
+          <use xlinkHref="/images/sprite.svg#icon-menu" />
         </svg>
         <Modal
           contentLabel="Navigation Modal"
@@ -38,7 +38,7 @@ export default class SidebarMobile extends React.Component {
         >
           <a className="nav-modal__close" onClick={this.handleCloseModal}>
             <svg>
-              <use href="/images/sprite.svg#icon-x-circle" />
+              <use xlinkHref="/images/sprite.svg#icon-x-circle" />
             </svg>
           </a>
           <nav className="nav-modal__nav">

@@ -18,13 +18,13 @@ const SearchInput = ({
     />
     <label htmlFor="search" name="search" className="search__label">
       <svg>
-        <use href="/images/sprite.svg#icon-search" />
+        <use xlinkHref="/images/sprite.svg#icon-search" />
       </svg>
       <svg>
-        <use href="/images/sprite.svg#icon-google" />
+        <use xlinkHref="/images/sprite.svg#icon-google" />
       </svg>
       <svg>
-        <use href="/images/sprite.svg#icon-books" />
+        <use xlinkHref="/images/sprite.svg#icon-books" />
       </svg>
     </label>
     <select className="search__select" value={field} onChange={onFieldChange}>

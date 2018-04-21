@@ -21,7 +21,7 @@ const SidebarDesktop = ({ email, match }) => (
         Search Books
       </NavLink>
       <svg className="sidebar__icon sidebar__icon--one">
-        <use href="/images/sprite.svg#icon-bullet" />
+        <use xlinkHref="/images/sprite.svg#icon-bullet" />
       </svg>
 
       <NavLink
@@ -31,7 +31,7 @@ const SidebarDesktop = ({ email, match }) => (
         Shelves
       </NavLink>
       <svg className="sidebar__icon sidebar__icon--two">
-        <use href="/images/sprite.svg#icon-bullet" />
+        <use xlinkHref="/images/sprite.svg#icon-bullet" />
       </svg>
       <Route
         path={`${match.path}shelves`}

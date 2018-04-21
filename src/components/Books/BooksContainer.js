@@ -91,7 +91,7 @@ export default class BooksContainer extends React.Component {
                 onClick={this.paginateBackward}
               >
                 <svg>
-                  <use href="/images/sprite.svg#icon-arrow-left-circle" />
+                  <use xlinkHref="/images/sprite.svg#icon-arrow-left-circle" />
                 </svg>
               </a>
               <a
@@ -99,7 +99,7 @@ export default class BooksContainer extends React.Component {
                 onClick={this.paginateForward}
               >
                 <svg>
-                  <use href="/images/sprite.svg#icon-arrow-right-circle" />
+                  <use xlinkHref="/images/sprite.svg#icon-arrow-right-circle" />
                 </svg>
               </a>
             </div>
