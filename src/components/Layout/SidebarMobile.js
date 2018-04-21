@@ -22,7 +22,7 @@ export default class SidebarMobile extends React.Component {
     return (
       <div className="sidebar">
         <div className="sidebar__top">
-          <Link to="/" className="sidebar__logo">
+          <Link to="/shelves" className="sidebar__logo">
             <img src="/images/aliveberry.svg" />
           </Link>
           <h1>Aliveberry</h1>
@@ -43,7 +43,7 @@ export default class SidebarMobile extends React.Component {
           </a>
           <nav className="nav-modal__nav">
             <Link
-              to="/"
+              to="/search"
               className="nav-modal__link"
               onClick={this.handleCloseModal}
             >

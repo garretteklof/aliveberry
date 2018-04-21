@@ -7,15 +7,14 @@ import Logout from "../Auth/Logout";
 const SidebarDesktop = ({ email, match }) => (
   <div className="sidebar">
     <div className="sidebar__top">
-      <Link to="/" className="sidebar__logo">
+      <Link to="/shelves" className="sidebar__logo">
         <img src="/images/aliveberry.svg" />
       </Link>
       <h1>Aliveberry</h1>
     </div>
     <nav className="sidebar__nav">
       <NavLink
-        exact
-        to="/"
+        to="/search"
         className="sidebar__nav-link sidebar__nav-link--one"
       >
         Search Books

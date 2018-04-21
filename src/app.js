@@ -39,7 +39,7 @@ const renderApp = () => {
       store.dispatch(login(currentUser.data));
       await store.dispatch(beginSetBooks());
       renderApp();
-      history.push("/");
+      history.push("/shelves");
     } catch (e) {
       localStorage.removeItem("token");
       store.dispatch(logout());

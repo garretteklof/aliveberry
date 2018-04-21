@@ -36,7 +36,7 @@ class Login extends React.Component {
       localStorage.setItem("token", token);
       this.props.beginSetBooks();
       this.props.login(response.data);
-      this.props.history.push("/");
+      this.props.history.push("/shelves");
     } catch (e) {
       this.setState({
         error: "Cannot login. Please recheck your credentials."

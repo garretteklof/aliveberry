@@ -25,7 +25,7 @@ class SignUp extends React.Component {
       const response = await callAddUser(this.state.email, this.state.password);
       localStorage.setItem("token", response.headers["x-auth"]);
       this.props.login(response.data);
-      this.props.history.push("/");
+      this.props.history.push("/shelves");
     } catch (e) {
       this.setState({ error: "Invalid email and/or password." });
     }

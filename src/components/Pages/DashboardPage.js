@@ -9,9 +9,9 @@ const DashboardPage = ({ match }) => (
   <div className="container">
     <Sidebar />
     <Switch>
-      <Route exact path={`${match.path}`} component={BookSearch} />
+      <Route path={`${match.path}search`} component={BookSearch} />
       <Route path={`${match.path}shelves`} component={BookShelves} />
-      <Redirect to={`${match.url}`} />
+      <Redirect to={`${match.url}shelves`} />
     </Switch>
   </div>
 );
