@@ -4,13 +4,14 @@
   margin: 0;
   padding: 0;
   box-sizing: inherit;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 html {
   font-size: 62.5%;
-  @media only screen and (max-width: $bp-600) {
-    font-size: 56.25%;
-  }
+  // @media only screen and (max-width: $bp-600) {
+  //   font-size: 56.25%;
+  // }
   @media only screen and (max-width: $bp-450) {
     font-size: 50%;
   }
@@ -21,7 +22,7 @@ html {
 
 body {
   box-sizing: border-box;
-  overflow: hidden;
+  //overflow: hidden;
 }
 
 ::selection {

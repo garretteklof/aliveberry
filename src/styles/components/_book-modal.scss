@@ -12,9 +12,12 @@
   max-height: 100%;
   background-color: white;
   border: none;
-  border: 2rem solid transparent;
-  border-image: linear-gradient(to right, $light-pink, $green);
-  border-image-slice: 1;
+  border: 2rem solid $pink;
+  @supports (border-image: linear-gradient(to right, $light-pink, $green)) {
+    border: 2rem solid transparent;
+    border-image: linear-gradient(to right, $light-pink, $green);
+    border-image-slice: 1;
+  }
   box-shadow: 0 2rem 4rem rgba(black, 0.2);
   @media only screen and (max-width: $bp-700) {
     width: 100%;

@@ -11,6 +11,14 @@ class Login extends React.Component {
     password: "",
     error: ""
   };
+
+  componentWillMount() {
+    document.body.style.overflow = "hidden";
+  }
+  componentWillUnmount() {
+    document.body.style.overflow = "visible";
+  }
+
   onEmailChange = e => {
     const email = e.target.value;
     this.setState(() => ({ email }));
@@ -45,11 +53,12 @@ class Login extends React.Component {
       () => this.formButton.click()
     );
   };
+
   render() {
     const { email, password, error } = this.state;
     return (
-      <div className="u-center-flex u-flex-dir-col">
-        <main className="auth">
+      <div className="auth">
+        <main className="auth__wrapper">
           <div className="auth__nav">
             <Link to="/welcome">
               <svg className="auth__backspace auth__backspace--login">

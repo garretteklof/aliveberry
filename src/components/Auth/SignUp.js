@@ -34,8 +34,8 @@ class SignUp extends React.Component {
   render() {
     const { email, password, error } = this.state;
     return (
-      <div className="u-center-flex">
-        <main className="auth">
+      <div className="auth">
+        <main className="auth__wrapper">
           <div className="auth__nav">
             <Link to="/welcome">
               <svg className="auth__backspace auth__backspace--signup">
