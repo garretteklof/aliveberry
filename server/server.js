@@ -16,6 +16,18 @@ const app = express();
 const port = process.env.PORT;
 const publicPath = path.join(__dirname, "..", "public");
 
+/*** MIDDLEWARE FOR HEROKU REDIRECT (HTTP TO HTTPS) ***/
+
+if (process.env.NODE_ENV === "production") {
+  app.use((req, res, next) => {
+    if (req.header("x-forwarded-proto") !== "https") {
+      res.redirect(`https://${req.header("host")}${req.url}`);
+    } else {
+      next();
+    }
+  });
+}
+
 /***************************** GOOGLE BOOKS API *****************************/
 
 app.post("/api", express.json(), async (req, res) => {
