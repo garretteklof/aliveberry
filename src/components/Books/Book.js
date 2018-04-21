@@ -26,7 +26,9 @@ class Book extends React.Component {
   };
   onShelfChange = e => {
     const shelf = e.target.value;
-    this.setState({ shelf }, () => this.editBook());
+    this.props.book.shelfStatus
+      ? this.setState({ shelf }, () => this.editBook())
+      : this.setState({ shelf });
   };
 
   addBook = async () => {
