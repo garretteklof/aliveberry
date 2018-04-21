@@ -30,7 +30,10 @@ export default class BookSearch extends React.Component {
             const hasThumbnail = book.volumeInfo.imageLinks || null;
             let thumbnailLink;
             hasThumbnail
-              ? (thumbnailLink = book.volumeInfo.imageLinks.thumbnail)
+              ? (thumbnailLink = book.volumeInfo.imageLinks.thumbnail.replace(
+                  /^http:\/\//i,
+                  "https://"
+                ))
               : (thumbnailLink = "");
             return {
               volumeID,
