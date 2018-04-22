@@ -77,7 +77,6 @@ class Login extends React.Component {
                 placeholder="email"
                 value={email}
                 onChange={this.onEmailChange}
-                autoFocus
               />
               <label htmlFor="email" className="auth__label auth__label--login">
                 Email

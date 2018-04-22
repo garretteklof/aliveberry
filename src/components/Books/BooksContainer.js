@@ -29,7 +29,7 @@ export default class BooksContainer extends React.Component {
       return (
         <div className="no-books">
           <p>No books on the shelf 😔</p>
-          <Link to="/">Find Book</Link>
+          <Link to="/search">Find Book</Link>
         </div>
       );
     }

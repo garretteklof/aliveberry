@@ -14,7 +14,6 @@
   border: none;
   border: 2rem solid $pink;
   @supports (border-image: linear-gradient(to right, $light-pink, $green)) {
-    border: 2rem solid transparent;
     border-image: linear-gradient(to right, $light-pink, $green);
     border-image-slice: 1;
   }
@@ -94,7 +93,7 @@
     outline: none;
     background: no-repeat 99% $pink url("../../public/images/chevron-down.svg");
     background-size: 3rem;
-    font-size: 1.6rem;
+    font-size: 16px; /* Lock in for mobile zoom */
     color: white;
     align-self: stretch;
     width: 20rem;
@@ -102,6 +101,7 @@
     @media only screen and (max-width: $bp-450) {
       grid-column: 1 / -1;
       justify-self: center;
+      width: 100%;
     }
     &:focus {
       outline: none;
@@ -130,6 +130,10 @@
       fill: $pink;
       height: 4rem;
       width: 4rem;
+      @media only screen and (max-width: $bp-450) {
+        height: 5rem;
+        width: 5rem;
+      }
     }
   }
   &__close {
@@ -141,6 +145,10 @@
       fill: $silver;
       height: 3rem;
       width: 3rem;
+      @media only screen and (max-width: $bp-450) {
+        height: 5rem;
+        width: 5rem;
+      }
       &:hover {
         fill: $grey;
       }
@@ -164,12 +172,17 @@
       grid-row: 5;
       grid-column: 1 / -1;
       justify-self: center;
+      width: 100%;
     }
     > svg {
       fill: $grey;
       height: 2rem;
       width: 2rem;
       transition: all 0.3s;
+      @media only screen and (max-width: $bp-450) {
+        height: 3rem;
+        width: 3rem;
+      }
     }
     &:hover {
       background-color: $grey;

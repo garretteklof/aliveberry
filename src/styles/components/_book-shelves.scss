@@ -41,6 +41,9 @@
       }
       .books__book-cover {
         @media only screen and (max-width: $bp-350) {
+          width: 8rem;
+        }
+        @media only screen and (max-width: $bp-250) {
           width: 7rem;
         }
       }
@@ -125,9 +128,16 @@
   position: relative;
   .books__heading {
     border: none;
-    border-bottom: 1rem solid transparent;
-    border-image: linear-gradient(to right, $silver, $silver);
-    border-image-slice: 1;
+    border-bottom: 1rem solid $silver;
+    @supports (border-image: linear-gradient(to right, $silver, $silver)) {
+      //border-bottom: 1rem solid transparent;
+      border-image: linear-gradient(to right, $silver, $silver);
+      border-image-slice: 1;
+    }
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+
     &:link,
     &:visited {
       color: $dark-pink;
@@ -137,8 +147,11 @@
     &:hover,
     &:active,
     &:focus {
-      border-image: linear-gradient(to right, $light-pink, $green);
-      border-image-slice: 1;
+      border-bottom: 1rem solid $pink;
+      @supports (border-image: linear-gradient(to right, $light-pink, $green)) {
+        border-image: linear-gradient(to right, $light-pink, $green);
+        border-image-slice: 1;
+      }
     }
   }
 }

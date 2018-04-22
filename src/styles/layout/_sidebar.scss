@@ -21,6 +21,10 @@
     color: $dark-pink;
     @media only screen and (max-width: $bp-1000) {
       margin-bottom: 0;
+      font-size: 1.5rem;
+    }
+    @media only screen and (max-width: $bp-350) {
+      font-size: 1.1rem;
     }
   }
 

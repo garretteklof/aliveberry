@@ -7,10 +7,17 @@ body {
 
 form {
   > * {
-    -webkit-appearance: none;
     font-family: inherit;
     font-weight: inherit;
     font-size: inherit;
     color: inherit;
+  }
+  > input[type="text"],
+  > input[type="email"],
+  > input[type="password"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    box-shadow: none !important;
   }
 }

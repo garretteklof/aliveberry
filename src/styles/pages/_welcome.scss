@@ -24,6 +24,16 @@
       color: $dark-pink;
       font-size: 5rem;
     }
+    @media only screen and (max-width: 25em) {
+      > img {
+        height: auto;
+        width: 9rem;
+      }
+      > h1 {
+        color: $dark-pink;
+        font-size: 4rem;
+      }
+    }
     @media only screen and (max-width: $bp-350) {
       > img {
         height: auto;

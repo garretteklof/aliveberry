@@ -5,7 +5,7 @@ import Login from "../Auth/Login";
 import SignUp from "../Auth/SignUp";
 
 const WelcomePage = () => (
-  <div className="u-center-flex">
+  <div className="u-center-flex" style={{ overflow: "hidden" }}>
     <main className="welcome">
       <div className="welcome__logo">
         <img src="/images/aliveberry.svg" />
